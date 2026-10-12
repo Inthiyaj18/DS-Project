@@ -1,0 +1,48 @@
+EXPERIMENT 01 - NumPy Quick Reference
+Mohan Babu University | Data Science Laboratory
+=====================================================
+
+1. CREATING ARRAYS
+------------------
+import numpy as np
+
+np.array([1, 2, 3])          # from a list
+np.arange(0, 10, 2)          # 0, 2, 4, 6, 8
+np.zeros((2, 3))             # 2x3 array of 0s
+np.ones(5)                   # five 1s
+np.eye(3)                    # 3x3 identity matrix
+np.linspace(0, 1, 5)         # five evenly spaced values
+np.random.seed(42)           # make results reproducible
+
+2. INSPECTING AN ARRAY
+----------------------
+a.shape        # dimensions        a.size     # number of elements
+a.dtype        # element type      a.ndim      # number of dimensions
+a.sum()        # total             a.mean()    # average
+a.min()        # smallest          a.max()     # largest
+
+3. INDEXING, SLICING, MASKING
+-----------------------------
+a[0]          # first element
+a[1:4]        # elements 1, 2, 3        (end excluded)
+a[:, 0]       # first column of a 2-D array
+a[a > 10]     # only the values above 10 (boolean mask)
+
+4. OPERATIONS
+-------------
+a + b         # element-wise addition
+a * b         # element-wise multiplication
+a @ b         # matrix multiplication
+a * 2         # scaling (broadcasting)
+np.sqrt(a)    # square root of every element
+
+5. STATISTICS AND LINEAR ALGEBRA
+--------------------------------
+np.median(a), np.std(a), np.var(a)
+np.corrcoef(x, y)                    # correlation matrix
+np.linalg.solve(A, b)                # solve Ax = b  (preferred)
+np.linalg.det(A)                     # determinant
+
+Remember: slices are VIEWS. Use a.copy() when you need an
+independent array, and use vectorised operations instead of
+Python loops.

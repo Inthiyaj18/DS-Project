@@ -1,0 +1,71 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [5 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+5 0 obj
+<< /Length 2403 >>
+stream
+BT /F1 18 Tf 60 800 Td (Module 1 - Introduction to Data Science and Python Basics) Tj ET
+BT /F2 9 Tf 60 766 Td (Mohan Babu University  |  Data Science Laboratory  |  Academic Year 2026-27) Tj ET
+BT /F2 6 Tf 60 753 Td () Tj ET
+BT /F1 13 Tf 60 743 Td (About this module) Tj ET
+BT /F2 11 Tf 60 717 Td (This module introduces the data science lifecycle - collecting data, cleaning it,) Tj ET
+BT /F2 11 Tf 60 701 Td (exploring it, modelling it and communicating the result. It then covers the Python) Tj ET
+BT /F2 11 Tf 60 685 Td (programming essentials used in every laboratory experiment: variables, lists,) Tj ET
+BT /F2 11 Tf 60 669 Td (dictionaries, loops, functions and simple file handling. By the end of the module you) Tj ET
+BT /F2 11 Tf 60 653 Td (can write small, readable Python programs and say where each step fits in a real data) Tj ET
+BT /F2 11 Tf 60 637 Td (project.) Tj ET
+BT /F2 6 Tf 60 621 Td () Tj ET
+BT /F1 13 Tf 60 611 Td (Topics covered) Tj ET
+BT /F2 11 Tf 78 585 Td (Introduction to data science and the data science lifecycle) Tj ET
+BT /F2 11 Tf 78 569 Td (Roles, tools and applications of data science) Tj ET
+BT /F2 11 Tf 78 553 Td (Installing Python 3 and Jupyter Notebook) Tj ET
+BT /F2 11 Tf 78 537 Td (Variables, data types and operators) Tj ET
+BT /F2 11 Tf 78 521 Td (Lists, tuples and dictionaries) Tj ET
+BT /F2 11 Tf 78 505 Td (Conditional statements and loops) Tj ET
+BT /F2 11 Tf 78 489 Td (Functions and modules) Tj ET
+BT /F2 11 Tf 78 473 Td (Reading and writing simple files) Tj ET
+BT /F2 6 Tf 60 457 Td () Tj ET
+BT /F1 13 Tf 60 447 Td (Key notes) Tj ET
+BT /F2 11 Tf 78 421 Td (Python lists are ordered and may hold mixed types; NumPy arrays are faster) Tj ET
+BT /F2 11 Tf 96 405 Td (because every element has the same numeric type.) Tj ET
+BT /F2 11 Tf 78 389 Td (Use f-strings such as f"Average: {value:.2f}" to format numbers inside) Tj ET
+BT /F2 11 Tf 96 373 Td (print\(\).) Tj ET
+BT /F2 11 Tf 78 357 Td (Always set a random seed \(random.seed / np.random.seed\) so results can be) Tj ET
+BT /F2 11 Tf 96 341 Td (reproduced.) Tj ET
+BT /F2 11 Tf 78 325 Td (Keep raw data files unchanged and write cleaned data to a new file.) Tj ET
+BT /F2 6 Tf 60 309 Td () Tj ET
+BT /F2 11 Tf 60 299 Td (Add lecture handouts, worksheets and extra reading for this module by dropping the) Tj ET
+BT /F2 11 Tf 60 283 Td (file into assets/pdfs/ and updating the pdf field in js/data.js.) Tj ET
+endstream
+endobj
+6 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 5 0 R >>
+endobj
+7 0 obj
+<< /Title (Module 1 - Introduction to Data Science and Python Basics) /Producer (MBU DS Portal) >>
+endobj
+xref
+0 8
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000190 00000 n 
+0000000260 00000 n 
+0000002715 00000 n 
+0000002851 00000 n 
+trailer
+<< /Size 8 /Root 1 0 R /Info 7 0 R >>
+startxref
+2965
+%%EOF

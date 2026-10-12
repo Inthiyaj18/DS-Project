@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Resources | Mohan Babu University</title>
+  <meta name="description" content="Learning resources - Data Science Laboratory, Mohan Babu University.">
+  <script>
+    try { var t = localStorage.getItem("mbu-theme"); if (t) document.documentElement.setAttribute("data-theme", t); } catch (e) {}
+  </script>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+  <div class="page-progress" aria-hidden="true"></div>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="overlay" id="overlay"></div>
+
+  <aside class="sidebar" id="sidebar" aria-label="Main navigation">
+    <div class="brand">
+      <span class="brand-logo" aria-hidden="true">MBU</span>
+      <div><strong>Mohan Babu University</strong><small>Data Science Laboratory</small></div>
+    </div>
+    <nav class="nav">
+      <a href="index.html" data-nav-id="dashboard"><span class="ico" aria-hidden="true">▦</span> Dashboard</a>
+      <a href="subjects.html" data-nav-id="subjects"><span class="ico" aria-hidden="true">◈</span> Subjects</a>
+      <a href="modules.html" data-nav-id="modules"><span class="ico" aria-hidden="true">❏</span> Modules</a>
+      <a href="experiments.html" data-nav-id="experiments"><span class="ico" aria-hidden="true">⚗</span> Experiments</a>
+      <a href="resources.html" data-nav-id="resources"><span class="ico" aria-hidden="true">⌘</span> Resources</a>
+      <a href="profile.html" data-nav-id="profile"><span class="ico" aria-hidden="true">☺</span> Profile</a>
+    </nav>
+    <div class="sidebar-foot">Academic Year 2026–27</div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <button class="icon-btn menu-btn" id="menuBtn" type="button" aria-label="Open menu" aria-controls="sidebar" aria-expanded="false">☰</button>
+      <span class="topbar-title">Resources</span>
+      <div class="topbar-actions">
+        <button class="icon-btn" id="themeToggle" type="button" aria-label="Toggle dark mode">☾</button>
+        <a class="topbar-avatar" href="profile.html" data-nav aria-label="Open profile page" title="Profile">
+          <span class="avatar" id="topAvatar" aria-hidden="true">?</span>
+        </a>
+      </div>
+    </header>
+
+    <main id="main" class="page container">
+
+      <section class="page-hero" aria-labelledby="resPageTitle">
+        <span class="exp-tag">DATA SCIENCE LABORATORY</span>
+        <h1 id="resPageTitle">Resources</h1>
+        <p class="hero-lead">
+          Official documentation and reference material that supports the
+          laboratory experiments.
+        </p>
+      </section>
+
+      <section class="resources" aria-labelledby="resTitle">
+        <h2 id="resTitle">Documentation</h2>
+        <p class="muted">Official documentation that supports the laboratory experiments.</p>
+        <div class="res-grid">
+          <a class="res-tile" href="https://docs.python.org/3/" target="_blank" rel="noopener"><span aria-hidden="true">🐍</span><strong>Python</strong><small>Language reference and tutorial</small></a>
+          <a class="res-tile" href="https://numpy.org/doc/" target="_blank" rel="noopener"><span aria-hidden="true">∑</span><strong>NumPy</strong><small>Arrays and numerical computing</small></a>
+          <a class="res-tile" href="https://pandas.pydata.org/docs/" target="_blank" rel="noopener"><span aria-hidden="true">▦</span><strong>Pandas</strong><small>Data analysis and manipulation</small></a>
+          <a class="res-tile" href="https://matplotlib.org/stable/" target="_blank" rel="noopener"><span aria-hidden="true">📈</span><strong>Matplotlib</strong><small>Charts and visualization</small></a>
+          <a class="res-tile" href="https://scikit-learn.org/stable/" target="_blank" rel="noopener"><span aria-hidden="true">⚙</span><strong>Scikit-learn</strong><small>Machine learning in Python</small></a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">© 2026 Mohan Babu University · Data Science Laboratory</footer>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/data-store.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/resources.js"></script>
+  <!-- Edit / Admin Mode -->
+  <script src="js/admin.js"></script>
+</body>
+</html>

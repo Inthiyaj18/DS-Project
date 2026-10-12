@@ -1,0 +1,68 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [5 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+5 0 obj
+<< /Length 2247 >>
+stream
+BT /F1 18 Tf 60 800 Td (Module 5 - Statistics and Machine Learning Fundamentals) Tj ET
+BT /F2 9 Tf 60 766 Td (Mohan Babu University  |  Data Science Laboratory  |  Academic Year 2026-27) Tj ET
+BT /F2 6 Tf 60 753 Td () Tj ET
+BT /F1 13 Tf 60 743 Td (About this module) Tj ET
+BT /F2 11 Tf 60 717 Td (This module connects statistics with machine learning. It covers descriptive) Tj ET
+BT /F2 11 Tf 60 701 Td (statistics and correlation, then the beginner machine learning workflow in scikit-) Tj ET
+BT /F2 11 Tf 60 685 Td (learn: splitting data, training regression and classification models, clustering with) Tj ET
+BT /F2 11 Tf 60 669 Td (K-means and evaluating models with accuracy, a confusion matrix and precision / recall) Tj ET
+BT /F2 11 Tf 60 653 Td (/ F1, discussing overfitting and data leakage throughout.) Tj ET
+BT /F2 6 Tf 60 637 Td () Tj ET
+BT /F1 13 Tf 60 627 Td (Topics covered) Tj ET
+BT /F2 11 Tf 78 601 Td (Descriptive statistics: mean, median, variance, standard deviation) Tj ET
+BT /F2 11 Tf 78 585 Td (Correlation and correlation versus causation) Tj ET
+BT /F2 11 Tf 78 569 Td (Supervised vs unsupervised learning) Tj ET
+BT /F2 11 Tf 78 553 Td (Train / test split and why unseen data matters) Tj ET
+BT /F2 11 Tf 78 537 Td (Linear and logistic regression) Tj ET
+BT /F2 11 Tf 78 521 Td (K-nearest neighbours and decision trees) Tj ET
+BT /F2 11 Tf 78 505 Td (K-means clustering) Tj ET
+BT /F2 11 Tf 78 489 Td (Evaluation: accuracy, confusion matrix, precision, recall, F1) Tj ET
+BT /F2 6 Tf 60 473 Td () Tj ET
+BT /F1 13 Tf 60 463 Td (Key notes) Tj ET
+BT /F2 11 Tf 78 437 Td (Scale features before KNN or SVM; tree-based models do not require scaling.) Tj ET
+BT /F2 11 Tf 78 421 Td (Use stratify=y when splitting classification data so every class keeps its) Tj ET
+BT /F2 11 Tf 96 405 Td (share.) Tj ET
+BT /F2 11 Tf 78 389 Td (Accuracy is misleading on imbalanced data - check precision and recall too.) Tj ET
+BT /F2 11 Tf 78 373 Td (Fix random_state to make splits and models repeatable.) Tj ET
+BT /F2 6 Tf 60 357 Td () Tj ET
+BT /F2 11 Tf 60 347 Td (Add lecture handouts, worksheets and extra reading for this module by dropping the) Tj ET
+BT /F2 11 Tf 60 331 Td (file into assets/pdfs/ and updating the pdf field in js/data.js.) Tj ET
+endstream
+endobj
+6 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 5 0 R >>
+endobj
+7 0 obj
+<< /Title (Module 5 - Statistics and Machine Learning Fundamentals) /Producer (MBU DS Portal) >>
+endobj
+xref
+0 8
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000190 00000 n 
+0000000260 00000 n 
+0000002559 00000 n 
+0000002695 00000 n 
+trailer
+<< /Size 8 /Root 1 0 R /Info 7 0 R >>
+startxref
+2807
+%%EOF

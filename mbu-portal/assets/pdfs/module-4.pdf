@@ -1,0 +1,66 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [5 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+5 0 obj
+<< /Length 2048 >>
+stream
+BT /F1 18 Tf 60 800 Td (Module 4 - Data Visualization with Matplotlib and Seaborn) Tj ET
+BT /F2 9 Tf 60 766 Td (Mohan Babu University  |  Data Science Laboratory  |  Academic Year 2026-27) Tj ET
+BT /F2 6 Tf 60 753 Td () Tj ET
+BT /F1 13 Tf 60 743 Td (About this module) Tj ET
+BT /F2 11 Tf 60 717 Td (Charts reveal patterns that tables hide. This module explains when each chart type is) Tj ET
+BT /F2 11 Tf 60 701 Td (appropriate and how to draw and label it with Matplotlib and Seaborn: line, bar,) Tj ET
+BT /F2 11 Tf 60 685 Td (histogram, scatter, box plot and correlation heatmap, finished with titles, axes,) Tj ET
+BT /F2 11 Tf 60 669 Td (legends and multi-panel dashboards.) Tj ET
+BT /F2 6 Tf 60 653 Td () Tj ET
+BT /F1 13 Tf 60 643 Td (Topics covered) Tj ET
+BT /F2 11 Tf 78 617 Td (The Matplotlib object model: figure and axes) Tj ET
+BT /F2 11 Tf 78 601 Td (Line plots for trends and bar charts for comparison) Tj ET
+BT /F2 11 Tf 78 585 Td (Histograms and density curves for distributions) Tj ET
+BT /F2 11 Tf 78 569 Td (Scatter plots for relationships between variables) Tj ET
+BT /F2 11 Tf 78 553 Td (Box plots for spread and outliers) Tj ET
+BT /F2 11 Tf 78 537 Td (Correlation heatmaps with Seaborn) Tj ET
+BT /F2 11 Tf 78 521 Td (Titles, axis labels, legends and colour maps) Tj ET
+BT /F2 11 Tf 78 505 Td (Subplots and multi-panel dashboards) Tj ET
+BT /F2 6 Tf 60 489 Td () Tj ET
+BT /F1 13 Tf 60 479 Td (Key notes) Tj ET
+BT /F2 11 Tf 78 453 Td (Start bar charts at zero so bar lengths are not exaggerated.) Tj ET
+BT /F2 11 Tf 78 437 Td (Bin width changes the story a histogram tells - choose it deliberately.) Tj ET
+BT /F2 11 Tf 78 421 Td (Seaborn accepts a DataFrame directly through data= and hue= adds colour.) Tj ET
+BT /F2 11 Tf 78 405 Td (Use fig.tight_layout\(\) to stop labels overlapping.) Tj ET
+BT /F2 6 Tf 60 389 Td () Tj ET
+BT /F2 11 Tf 60 379 Td (Add lecture handouts, worksheets and extra reading for this module by dropping the) Tj ET
+BT /F2 11 Tf 60 363 Td (file into assets/pdfs/ and updating the pdf field in js/data.js.) Tj ET
+endstream
+endobj
+6 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 5 0 R >>
+endobj
+7 0 obj
+<< /Title (Module 4 - Data Visualization with Matplotlib and Seaborn) /Producer (MBU DS Portal) >>
+endobj
+xref
+0 8
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000190 00000 n 
+0000000260 00000 n 
+0000002360 00000 n 
+0000002496 00000 n 
+trailer
+<< /Size 8 /Root 1 0 R /Info 7 0 R >>
+startxref
+2610
+%%EOF

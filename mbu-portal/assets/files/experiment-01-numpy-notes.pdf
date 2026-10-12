@@ -1,0 +1,64 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [5 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+5 0 obj
+<< /Length 1950 >>
+stream
+BT /F1 18 Tf 60 800 Td (Experiment 01 - NumPy Study Notes) Tj ET
+BT /F2 9 Tf 60 766 Td (Mohan Babu University  |  Data Science Laboratory) Tj ET
+BT /F2 6 Tf 60 753 Td () Tj ET
+BT /F1 13 Tf 60 743 Td (Aim) Tj ET
+BT /F2 11 Tf 60 717 Td (Experiment 01 asks you to create NumPy arrays, inspect them, slice and filter them,) Tj ET
+BT /F2 11 Tf 60 701 Td (apply vectorised operations, compute descriptive statistics and solve a small linear) Tj ET
+BT /F2 11 Tf 60 685 Td (system. Write every program with a fixed random seed so your output can be repeated.) Tj ET
+BT /F2 6 Tf 60 669 Td () Tj ET
+BT /F1 13 Tf 60 659 Td (Program outline) Tj ET
+BT /F2 11 Tf 78 633 Td (Create arrays with array, arange, zeros, ones, eye and linspace) Tj ET
+BT /F2 11 Tf 78 617 Td (Print shape, size, dtype and ndim for every array you create) Tj ET
+BT /F2 11 Tf 78 601 Td (Slice rows and columns, then filter with a boolean mask) Tj ET
+BT /F2 11 Tf 78 585 Td (Replace a Python loop with a vectorised expression) Tj ET
+BT /F2 11 Tf 78 569 Td (Compute mean, median, standard deviation along axis 0 and 1) Tj ET
+BT /F2 11 Tf 78 553 Td (Multiply two matrices and solve Ax = b with np.linalg.solve) Tj ET
+BT /F2 11 Tf 78 537 Td (Run a small Monte-Carlo simulation with a fixed seed) Tj ET
+BT /F2 6 Tf 60 521 Td () Tj ET
+BT /F1 13 Tf 60 511 Td (Notes and viva) Tj ET
+BT /F2 11 Tf 78 485 Td (Sample program skeleton: import numpy as np; np.random.seed\(42\); a =) Tj ET
+BT /F2 11 Tf 96 469 Td (np.random.randint\(1, 100, size=\(4, 4\)\); print\(a\); print\("Mean per row:",) Tj ET
+BT /F2 11 Tf 96 453 Td (a.mean\(axis=1\)\)) Tj ET
+BT /F2 11 Tf 78 437 Td (Viva questions: What is broadcasting? What is the difference between a view) Tj ET
+BT /F2 11 Tf 96 421 Td (and a copy? Why is solve preferred over inv? What does axis=0 mean?) Tj ET
+BT /F2 11 Tf 78 405 Td (Record the output of every program in your observation notebook with the) Tj ET
+BT /F2 11 Tf 96 389 Td (seed value.) Tj ET
+endstream
+endobj
+6 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 5 0 R >>
+endobj
+7 0 obj
+<< /Title (Experiment 01 - NumPy Study Notes) /Producer (MBU DS Portal) >>
+endobj
+xref
+0 8
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000190 00000 n 
+0000000260 00000 n 
+0000002262 00000 n 
+0000002398 00000 n 
+trailer
+<< /Size 8 /Root 1 0 R /Info 7 0 R >>
+startxref
+2488
+%%EOF

@@ -1,0 +1,67 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [5 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+5 0 obj
+<< /Length 2104 >>
+stream
+BT /F1 18 Tf 60 800 Td (Module 3 - Data Manipulation with Pandas) Tj ET
+BT /F2 9 Tf 60 766 Td (Mohan Babu University  |  Data Science Laboratory  |  Academic Year 2026-27) Tj ET
+BT /F2 6 Tf 60 753 Td () Tj ET
+BT /F1 13 Tf 60 743 Td (About this module) Tj ET
+BT /F2 11 Tf 60 717 Td (Pandas is the standard tool for tabular data in Python. This module covers Series and) Tj ET
+BT /F2 11 Tf 60 701 Td (DataFrame creation, reading CSV files, selecting with loc and iloc, filtering and) Tj ET
+BT /F2 11 Tf 60 685 Td (sorting, handling missing values, group-by aggregation, merging tables and building) Tj ET
+BT /F2 11 Tf 60 669 Td (pivot tables - the day-to-day operations of a data analyst.) Tj ET
+BT /F2 6 Tf 60 653 Td () Tj ET
+BT /F1 13 Tf 60 643 Td (Topics covered) Tj ET
+BT /F2 11 Tf 78 617 Td (Series and DataFrame fundamentals) Tj ET
+BT /F2 11 Tf 78 601 Td (Reading CSV and Excel files with read_csv / read_excel) Tj ET
+BT /F2 11 Tf 78 585 Td (Inspecting data: head, describe, info, shape, dtypes) Tj ET
+BT /F2 11 Tf 78 569 Td (Selection with loc and iloc) Tj ET
+BT /F2 11 Tf 78 553 Td (Filtering, sorting and conditional queries) Tj ET
+BT /F2 11 Tf 78 537 Td (Missing values: isnull, fillna, dropna) Tj ET
+BT /F2 11 Tf 78 521 Td (GroupBy: split, apply, combine and aggregation) Tj ET
+BT /F2 11 Tf 78 505 Td (Merge, join and pivot tables) Tj ET
+BT /F2 6 Tf 60 489 Td () Tj ET
+BT /F1 13 Tf 60 479 Td (Key notes) Tj ET
+BT /F2 11 Tf 78 453 Td (Combine conditions with & and | and wrap each condition in brackets.) Tj ET
+BT /F2 11 Tf 78 437 Td (The median is safer than the mean for filling missing values when outliers) Tj ET
+BT /F2 11 Tf 96 421 Td (exist.) Tj ET
+BT /F2 11 Tf 78 405 Td (groupby\(...\)["Marks"].agg\(["mean", "max", "count"]\) gives a compact summary.) Tj ET
+BT /F2 11 Tf 78 389 Td (Check df.shape before and after merging or dropping rows.) Tj ET
+BT /F2 6 Tf 60 373 Td () Tj ET
+BT /F2 11 Tf 60 363 Td (Add lecture handouts, worksheets and extra reading for this module by dropping the) Tj ET
+BT /F2 11 Tf 60 347 Td (file into assets/pdfs/ and updating the pdf field in js/data.js.) Tj ET
+endstream
+endobj
+6 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 5 0 R >>
+endobj
+7 0 obj
+<< /Title (Module 3 - Data Manipulation with Pandas) /Producer (MBU DS Portal) >>
+endobj
+xref
+0 8
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000190 00000 n 
+0000000260 00000 n 
+0000002416 00000 n 
+0000002552 00000 n 
+trailer
+<< /Size 8 /Root 1 0 R /Info 7 0 R >>
+startxref
+2649
+%%EOF

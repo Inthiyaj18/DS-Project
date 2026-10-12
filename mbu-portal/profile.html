@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Profile | Mohan Babu University</title>
+  <meta name="description" content="Student profile - Data Science Laboratory, Mohan Babu University.">
+  <script>
+    try { var t = localStorage.getItem("mbu-theme"); if (t) document.documentElement.setAttribute("data-theme", t); } catch (e) {}
+  </script>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+  <div class="page-progress" aria-hidden="true"></div>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="overlay" id="overlay"></div>
+
+  <aside class="sidebar" id="sidebar" aria-label="Main navigation">
+    <div class="brand">
+      <span class="brand-logo" aria-hidden="true">MBU</span>
+      <div><strong>Mohan Babu University</strong><small>Data Science Laboratory</small></div>
+    </div>
+    <nav class="nav">
+      <a href="index.html" data-nav-id="dashboard"><span class="ico" aria-hidden="true">▦</span> Dashboard</a>
+      <a href="subjects.html" data-nav-id="subjects"><span class="ico" aria-hidden="true">◈</span> Subjects</a>
+      <a href="modules.html" data-nav-id="modules"><span class="ico" aria-hidden="true">❏</span> Modules</a>
+      <a href="experiments.html" data-nav-id="experiments"><span class="ico" aria-hidden="true">⚗</span> Experiments</a>
+      <a href="resources.html" data-nav-id="resources"><span class="ico" aria-hidden="true">⌘</span> Resources</a>
+      <a href="profile.html" data-nav-id="profile"><span class="ico" aria-hidden="true">☺</span> Profile</a>
+    </nav>
+    <div class="sidebar-foot">Academic Year 2026–27</div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <button class="icon-btn menu-btn" id="menuBtn" type="button" aria-label="Open menu" aria-controls="sidebar" aria-expanded="false">☰</button>
+      <span class="topbar-title">Student Profile</span>
+      <div class="topbar-actions">
+        <button class="icon-btn" id="themeToggle" type="button" aria-label="Toggle dark mode">☾</button>
+        <a class="topbar-avatar" href="profile.html" data-nav aria-label="Open profile page" title="Profile">
+          <span class="avatar" id="topAvatar" aria-hidden="true">?</span>
+        </a>
+      </div>
+    </header>
+
+    <main id="main" class="page container">
+      <div id="pfApp">
+        <a class="back-link" href="index.html" data-nav>← Dashboard</a>
+
+        <!-- HEADER -->
+        <section class="page-hero" aria-labelledby="pfTitle">
+          <span class="eyebrow">Student Profile</span>
+          <h1 id="pfTitle">Student</h1>
+          <p class="hero-sub" id="pfHeroSub"></p>
+        </section>
+
+        <!-- ID CARD + SOCIAL LINKS -->
+        <div class="profile-grid">
+          <aside class="id-card" aria-label="Student ID card">
+            <div class="id-strip">
+              <span class="id-crest" aria-hidden="true">MBU</span>
+              <div><strong>MOHAN BABU UNIVERSITY</strong><small>Data Science Laboratory</small></div>
+              <span class="id-tag">ID CARD</span>
+            </div>
+            <div class="profile-head">
+              <div class="avatar" id="pfAvatar" aria-hidden="true">?</div>
+              <div><span class="profile-label">STUDENT</span><strong id="pfName">Student</strong></div>
+            </div>
+            <dl class="profile-list">
+              <div><dt><span aria-hidden="true">☺</span> Name</dt><dd id="pfNameFull"></dd></div>
+              <div><dt><span aria-hidden="true">#</span> Roll Number</dt><dd id="pfRoll"></dd></div>
+              <div><dt><span aria-hidden="true">❖</span> Branch</dt><dd id="pfBranch"></dd></div>
+              <div><dt><span aria-hidden="true">✎</span> Faculty</dt><dd id="pfFaculty"></dd></div>
+              <div><dt><span aria-hidden="true">🎓</span> Degree</dt><dd id="pfDegree"></dd></div>
+              <div><dt><span aria-hidden="true">⌘</span> Subject Code</dt><dd id="pfSubject"></dd></div>
+            </dl>
+            <div class="id-foot">
+              <span>Academic Year 2026–27</span>
+              <a href="index.html" data-nav>← Dashboard</a>
+            </div>
+          </aside>
+
+          <section class="panel connect-card" aria-labelledby="connectTitle">
+            <h2 id="connectTitle">Connect</h2>
+            <p class="muted">LinkedIn, GitHub and other platforms.</p>
+            <div class="social-grid" id="socialGrid"></div>
+            <p class="muted" id="socialEmpty" hidden>No links configured yet. Add them to <code>socialLinks</code> in <code>js/data.js</code>.</p>
+          </section>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer">© 2026 Mohan Babu University · Data Science Laboratory</footer>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/data-store.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/profile.js"></script>
+  <!-- Edit / Admin Mode -->
+  <script src="js/admin.js"></script>
+  <script src="js/admin-pages.js"></script>
+</body>
+</html>

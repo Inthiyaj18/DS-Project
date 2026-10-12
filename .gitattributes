@@ -1,0 +1,12 @@
+* text=auto
+
+# Binary assets
+*.pdf binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.zip binary
+*.pptx binary
+*.ppt binary

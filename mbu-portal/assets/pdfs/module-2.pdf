@@ -1,0 +1,69 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [5 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+5 0 obj
+<< /Length 2279 >>
+stream
+BT /F1 18 Tf 60 800 Td (Module 2 - Numerical Computing with NumPy) Tj ET
+BT /F2 9 Tf 60 766 Td (Mohan Babu University  |  Data Science Laboratory  |  Academic Year 2026-27) Tj ET
+BT /F2 6 Tf 60 753 Td () Tj ET
+BT /F1 13 Tf 60 743 Td (About this module) Tj ET
+BT /F2 11 Tf 60 717 Td (NumPy provides the n-dimensional array, the data structure behind nearly every Python) Tj ET
+BT /F2 11 Tf 60 701 Td (data library. This module covers creating arrays, inspecting shape and dtype, indexing) Tj ET
+BT /F2 11 Tf 60 685 Td (and slicing, boolean masking, broadcasting and vectorised operations instead of loops,) Tj ET
+BT /F2 11 Tf 60 669 Td (finishing with descriptive statistics, linear algebra and reproducible random) Tj ET
+BT /F2 11 Tf 60 653 Td (simulation.) Tj ET
+BT /F2 6 Tf 60 637 Td () Tj ET
+BT /F1 13 Tf 60 627 Td (Topics covered) Tj ET
+BT /F2 11 Tf 78 601 Td (Creating arrays: array, arange, zeros, ones, eye, linspace) Tj ET
+BT /F2 11 Tf 78 585 Td (Shape, size, dtype and other array attributes) Tj ET
+BT /F2 11 Tf 78 569 Td (Indexing, slicing and boolean masking) Tj ET
+BT /F2 11 Tf 78 553 Td (Broadcasting and vectorised arithmetic) Tj ET
+BT /F2 11 Tf 78 537 Td (Statistics: mean, median, var, std, min, max) Tj ET
+BT /F2 11 Tf 78 521 Td (Sorting, unique values and axis-wise operations) Tj ET
+BT /F2 11 Tf 78 505 Td (Linear algebra: multiply, determinant, inverse, solving Ax = b) Tj ET
+BT /F2 11 Tf 78 489 Td (Random number generation and simulation) Tj ET
+BT /F2 6 Tf 60 473 Td () Tj ET
+BT /F1 13 Tf 60 463 Td (Key notes) Tj ET
+BT /F2 11 Tf 78 437 Td (a * b multiplies corresponding items \(element-wise\); a @ b performs matrix) Tj ET
+BT /F2 11 Tf 96 421 Td (multiplication.) Tj ET
+BT /F2 11 Tf 78 405 Td (Slices are views, not copies - use .copy\(\) when an independent array is) Tj ET
+BT /F2 11 Tf 96 389 Td (needed.) Tj ET
+BT /F2 11 Tf 78 373 Td (np.linalg.solve is preferred over computing an inverse manually.) Tj ET
+BT /F2 11 Tf 78 357 Td (np.random.seed\(42\) makes dice rolls and samples repeatable across runs.) Tj ET
+BT /F2 6 Tf 60 341 Td () Tj ET
+BT /F2 11 Tf 60 331 Td (Add lecture handouts, worksheets and extra reading for this module by dropping the) Tj ET
+BT /F2 11 Tf 60 315 Td (file into assets/pdfs/ and updating the pdf field in js/data.js.) Tj ET
+endstream
+endobj
+6 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 5 0 R >>
+endobj
+7 0 obj
+<< /Title (Module 2 - Numerical Computing with NumPy) /Producer (MBU DS Portal) >>
+endobj
+xref
+0 8
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000190 00000 n 
+0000000260 00000 n 
+0000002591 00000 n 
+0000002727 00000 n 
+trailer
+<< /Size 8 /Root 1 0 R /Info 7 0 R >>
+startxref
+2825
+%%EOF

@@ -1,0 +1,56 @@
+EXPERIMENT 06 - Model Evaluation Checklist
+Mohan Babu University | Data Science Laboratory
+=====================================================
+
+Use this checklist before submitting any classification experiment.
+
+1. DATA
+-------
+[ ] The target column is identified correctly.
+[ ] Features and target are separated (X and y).
+[ ] Categorical columns are encoded (one-hot / label encoding).
+[ ] Missing values are handled (fillna / dropna).
+
+2. SPLIT
+--------
+[ ] train_test_split(..., test_size=0.2, random_state=42)
+[ ] stratify=y used for imbalanced classification data.
+[ ] Nothing from the test set is used during training (no leakage).
+
+3. SCALING
+----------
+[ ] Features scaled with StandardScaler / MinMaxScaler when the
+    model is distance based (KNN, SVM, logistic regression).
+[ ] The scaler is fit on TRAIN data only, then applied to test data:
+        scaler.fit(X_train)
+        X_train = scaler.transform(X_train)
+        X_test  = scaler.transform(X_test)
+
+4. TRAIN
+--------
+[ ] A model is chosen that matches the problem type:
+        regression      -> LinearRegression, RandomForestRegressor
+        classification  -> LogisticRegression, KNN, DecisionTree
+        clustering      -> KMeans (no y needed)
+[ ] random_state fixed so results are reproducible.
+
+5. EVALUATE
+-----------
+[ ] Predictions made on the unseen test set: model.predict(X_test)
+[ ] Classification: accuracy + confusion matrix + classification report
+[ ] Imbalanced data: precision, recall and F1 matter more than accuracy
+[ ] Regression: MAE, MSE, RMSE, R2 reported
+[ ] Compare against a simple baseline before claiming success.
+
+6. INTERPRET
+------------
+[ ] Confusion matrix read as: rows = actual, columns = predicted.
+[ ] Overfitting checked: training score vs test score.
+[ ] Results written in the experiment record with the seed value.
+
+Common mistakes to avoid
+------------------------
+- Fitting the scaler on the whole dataset before splitting.
+- Tuning hyperparameters on the test set.
+- Reporting accuracy only when classes are imbalanced.
+- Forgetting random_state, so every run gives different numbers.

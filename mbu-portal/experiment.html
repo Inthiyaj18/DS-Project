@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>
+    Experiment Overview | Mohan Babu University
+  </title>
+
+  <meta
+    name="description"
+    content="Experiment overview - Data Science Laboratory, Mohan Babu University."
+  >
+
+  <!-- Theme -->
+  <script>
+    try {
+      var t = localStorage.getItem("mbu-theme");
+
+      if (t) {
+        document.documentElement.setAttribute(
+          "data-theme",
+          t
+        );
+      }
+
+    } catch (e) {}
+  </script>
+
+  <!-- Main CSS -->
+  <link
+    rel="stylesheet"
+    href="css/style.css"
+  >
+
+  <link rel="stylesheet" href="css/admin.css">
+
+</head>
+
+
+<body>
+
+
+  <!-- ========================================= -->
+  <!-- PAGE PROGRESS -->
+  <!-- ========================================= -->
+
+  <div
+    class="page-progress"
+    aria-hidden="true">
+  </div>
+
+
+  <!-- ========================================= -->
+  <!-- SKIP LINK -->
+  <!-- ========================================= -->
+
+  <a
+    class="skip-link"
+    href="#main">
+
+    Skip to content
+
+  </a>
+
+
+  <!-- ========================================= -->
+  <!-- MOBILE OVERLAY -->
+  <!-- ========================================= -->
+
+  <div
+    class="overlay"
+    id="overlay">
+  </div>
+
+
+  <!-- ========================================= -->
+  <!-- SIDEBAR -->
+  <!-- ========================================= -->
+
+  <aside
+    class="sidebar"
+    id="sidebar"
+    aria-label="Main navigation">
+
+
+    <!-- BRAND -->
+
+    <div class="brand">
+
+      <span
+        class="brand-logo"
+        aria-hidden="true">
+
+        MBU
+
+      </span>
+
+
+      <div>
+
+        <strong>
+          Mohan Babu University
+        </strong>
+
+        <small>
+          Data Science Laboratory
+        </small>
+
+      </div>
+
+    </div>
+
+
+    <!-- NAVIGATION -->
+
+    <nav class="nav">
+
+
+      <a
+        href="index.html"
+        data-nav-id="dashboard">
+
+        <span
+          class="ico"
+          aria-hidden="true">
+
+          ▦
+
+        </span>
+
+        Dashboard
+
+      </a>
+
+
+      <!-- SUBJECTS -->
+
+      <a
+        href="subjects.html"
+        data-nav-id="subjects">
+
+        <span
+          class="ico"
+          aria-hidden="true">
+
+          ◈
+
+        </span>
+
+        Subjects
+
+      </a>
+
+
+      <!-- MODULES -->
+
+      <a
+        href="modules.html"
+        data-nav-id="modules">
+
+        <span
+          class="ico"
+          aria-hidden="true">
+
+          ❏
+
+        </span>
+
+        Modules
+
+      </a>
+
+
+      <a
+        href="experiments.html"
+        data-nav-id="experiments">
+
+        <span
+          class="ico"
+          aria-hidden="true">
+
+          ⚗
+
+        </span>
+
+        Experiments
+
+      </a>
+
+
+      <a
+        href="resources.html"
+        data-nav-id="resources">
+
+        <span
+          class="ico"
+          aria-hidden="true">
+
+          ⌘
+
+        </span>
+
+        Resources
+
+      </a>
+
+
+      <a
+        href="profile.html"
+        data-nav-id="profile">
+
+        <span
+          class="ico"
+          aria-hidden="true">
+
+          ☺
+
+        </span>
+
+        Profile
+
+      </a>
+
+
+    </nav>
+
+
+    <!-- SIDEBAR FOOTER -->
+
+    <div class="sidebar-foot">
+
+      Academic Year 2026–27
+
+    </div>
+
+
+  </aside>
+
+
+  <!-- ========================================= -->
+  <!-- MAIN -->
+  <!-- ========================================= -->
+
+  <div class="main">
+
+
+    <!-- ======================================= -->
+    <!-- TOP BAR -->
+    <!-- ======================================= -->
+
+    <header class="topbar">
+
+
+      <!-- MENU BUTTON -->
+
+      <button
+        class="icon-btn menu-btn"
+        id="menuBtn"
+        type="button"
+        aria-label="Open menu"
+        aria-controls="sidebar"
+        aria-expanded="false">
+
+        ☰
+
+      </button>
+
+
+      <!-- PAGE TITLE -->
+
+      <span class="topbar-title">
+
+        Experiment Overview
+
+      </span>
+
+
+      <!-- TOPBAR ACTIONS -->
+
+      <div class="topbar-actions">
+
+
+        <!-- DARK MODE -->
+
+        <button
+          class="icon-btn"
+          id="themeToggle"
+          type="button"
+          aria-label="Toggle dark mode">
+
+          ☾
+
+        </button>
+
+
+        <!-- PROFILE AVATAR -> profile.html -->
+
+        <a
+          class="topbar-avatar"
+          href="profile.html"
+          data-nav
+          aria-label="Open profile page"
+          title="Profile">
+
+          <span class="avatar" id="topAvatar" aria-hidden="true">?</span>
+
+        </a>
+
+
+      </div>
+
+
+    </header>
+
+
+    <!-- ======================================= -->
+    <!-- MAIN CONTENT -->
+    <!-- ======================================= -->
+
+    <main
+      id="main"
+      class="page container">
+
+
+      <!-- ===================================== -->
+      <!-- EXISTING EXPERIMENT APPLICATION -->
+      <!-- ===================================== -->
+
+      <div id="app">
+
+        <div
+          class="loader"
+          role="status">
+
+          <span class="spinner"></span>
+
+          Loading experiment…
+
+        </div>
+
+      </div>
+
+
+      <!-- ===================================== -->
+      <!-- ONLINE CODE LAB -->
+      <!-- ===================================== -->
+
+      <section
+        class="compiler-section"
+        id="compiler">
+
+
+        <!-- COMPILER HEADER -->
+
+        <div class="compiler-title">
+
+
+          <div>
+
+            <h2>
+              Online Code Lab
+            </h2>
+
+            <p>
+              Write, execute and test your
+              experiment program here.
+            </p>
+
+          </div>
+
+
+          <!-- LANGUAGE SELECTOR -->
+
+          <div class="language-box">
+
+            <label
+              for="languageSelect">
+
+              Language
+
+            </label>
+
+
+            <select
+              id="languageSelect"
+              aria-label="Select programming language">
+
+
+              <option value="python">
+
+                Python
+
+              </option>
+
+
+              <option value="java">
+
+                Java
+
+              </option>
+
+
+              <option value="cpp">
+
+                C++
+
+              </option>
+
+
+              <option value="c">
+
+                C
+
+              </option>
+
+
+              <option value="r">
+
+                R
+
+              </option>
+
+
+              <option value="sql">
+
+                SQL
+
+              </option>
+
+
+            </select>
+
+          </div>
+
+
+        </div>
+
+
+        <!-- =================================== -->
+        <!-- CODE EDITOR -->
+        <!-- =================================== -->
+
+        <div
+          class="code-editor-container">
+
+
+          <!-- EDITOR TOOLBAR -->
+
+          <div class="editor-topbar">
+
+
+            <!-- FILE NAME -->
+
+            <div class="file-info">
+
+              <span
+                class="file-icon"
+                aria-hidden="true">
+
+                ●
+
+              </span>
+
+
+              <span id="fileName">
+
+                main.py
+
+              </span>
+
+            </div>
+
+
+            <!-- EDITOR BUTTONS -->
+
+            <div class="editor-actions">
+
+
+              <!-- RESET -->
+
+              <button
+                type="button"
+                id="resetCode"
+                class="editor-btn">
+
+                ↻ Reset
+
+              </button>
+
+
+              <!-- COPY -->
+
+              <button
+                type="button"
+                id="copyCode"
+                class="editor-btn">
+
+                Copy
+
+              </button>
+
+
+              <!-- RUN -->
+
+              <button
+                type="button"
+                id="runCodeBtn"
+                class="run-code-btn">
+
+                ▶ Run Code
+
+              </button>
+
+
+              <!-- STOP -->
+
+              <button
+                type="button"
+                id="stopCode"
+                class="editor-btn">
+
+                ■ Stop
+
+              </button>
+
+
+              <!-- RESTART -->
+
+              <button
+                type="button"
+                id="restartCode"
+                class="editor-btn">
+
+                ⟳ Restart
+
+              </button>
+
+
+            </div>
+
+
+          </div>
+
+
+          <!-- CODE EDITOR -->
+
+          <textarea
+            id="codeEditor"
+            spellcheck="false"
+            autocomplete="off"
+            autocorrect="off"
+            autocapitalize="off"
+            placeholder="Write your program here...">
+          </textarea>
+
+
+        </div>
+
+
+        <!-- =================================== -->
+        <!-- INPUT + OUTPUT -->
+        <!-- =================================== -->
+
+        <!-- TERMINAL: output + input merged into one panel -->
+        <div class="compiler-grid">
+          <div class="compiler-card terminal-card">
+            <div class="compiler-card-header">
+              <h3>Terminal</h3>
+              <div class="terminal-actions">
+                <button type="button" id="clearInput">Clear input</button>
+                <button type="button" id="clearOutput">Clear output</button>
+              </div>
+            </div>
+
+            <pre id="programOutput">Run your program to see the output...</pre>
+
+            <!-- CHARTS: matplotlib / seaborn PNGs + interactive plotly -->
+            <div class="plot-output" id="plotOutput" hidden></div>
+
+            <!-- INPUT lives inside the terminal (VS Code style) -->
+            <div class="terminal-input">
+              <label class="terminal-prompt" for="programInput" aria-label="Program input">›</label>
+              <textarea id="programInput" rows="2" spellcheck="false"
+                placeholder="Type input here when your program asks for it (each value on its own line), then press Run."></textarea>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- =================================== -->
+        <!-- COMPILER STATUS -->
+        <!-- =================================== -->
+
+        <div class="compiler-status">
+
+
+          <span id="compilerStatus">
+
+            ● Ready
+
+          </span>
+
+
+          <span id="executionTime">
+
+            Execution time: —
+
+          </span>
+
+
+        </div>
+
+
+      </section>
+
+
+    </main>
+
+
+    <!-- ======================================= -->
+    <!-- FOOTER -->
+    <!-- ======================================= -->
+
+    <footer class="footer">
+
+      © 2026 Mohan Babu University
+      · Data Science Laboratory
+
+    </footer>
+
+
+  </div>
+
+
+  <!-- ========================================= -->
+  <!-- JAVASCRIPT -->
+  <!-- ========================================= -->
+
+  <script src="js/data.js"></script>
+  <script src="js/data-store.js"></script>
+
+  <script src="js/common.js"></script>
+
+  <script src="js/fileviewer.js"></script>
+
+  <script src="js/experiment.js"></script>
+
+  <!-- Online Code Lab - local Python sandbox (Pyodide) -->
+  <script src="js/pycode.js"></script>
+
+  <script src="js/pylab.js"></script>
+
+  <!-- Compiler JavaScript -->
+  <script src="js/compiler.js"></script>
+
+  <!-- Code editor: syntax highlighting + line numbers (optional CDN) -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css">
+
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/material-darker.min.css">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/python/python.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/clike/clike.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/sql/sql.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/r/r.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/edit/matchbrackets.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/edit/closebrackets.min.js"></script>
+
+  <!-- Interactive charts (plotly) -->
+  <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+
+  <script src="js/editor.js"></script>
+
+
+  <!-- Edit Mode, uploaded-file storage (IndexedDB), PDF Book view -->
+  <script src="js/file-store.js"></script>
+  <script src="js/pdf-book.js"></script>
+  <script src="js/admin.js"></script>
+  <script src="js/admin-pages.js"></script>
+</body>
+
+</html>
