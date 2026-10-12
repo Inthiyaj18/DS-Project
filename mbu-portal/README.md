@@ -197,6 +197,25 @@ git push -u origin main
 
 To host it free: repository **Settings → Pages → Deploy from branch → main / root**.
 
+## Theme / color palette
+
+The portal uses a **Midnight Navy + Indigo + Soft White** palette defined as
+design tokens in `css/style.css` (`:root` for light, `[data-theme="dark"]`
+for dark mode). All components and pages use these tokens, so restyling the
+whole site is a single-point change.
+
+Light: `--bg #F8FAFC` · `--surface #FFFFFF` · `--surface-2 #F1F5F9` ·
+`--text #0F172A` · `--text-2 #475569` · `--muted #64748B` · `--border #E2E8F0` ·
+`--primary #4F46E5` · `--primary-hover #4338CA` · `--primary-2 #6366F1` ·
+`--focus-ring #818CF8` · sidebar `#0F172A` / `#111C33` · active nav `#312E81` ·
+status `#15803D/#F0FDF4` (success), `#B45309/#FFFBEB` (warning),
+`#B91C1C/#FEF2F2` (error), `#1D4ED8/#EFF6FF` (info).
+
+Dark mode keeps the same brand story with indigo-tinted surfaces (`#0B1220`
+background, `#111C33`/`#16213B` panels, `#25324F` borders) and a bright
+indigo primary (`#818CF8`). The code editor deliberately stays dark in both
+themes (CodeMirror `material-darker`) so syntax highlighting stays readable.
+
 ## Notes
 
 - **Storage (all per browser, no server):**
