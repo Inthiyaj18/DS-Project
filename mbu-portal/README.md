@@ -199,22 +199,24 @@ To host it free: repository **Settings → Pages → Deploy from branch → main
 
 ## Theme / color palette
 
-The portal uses a **Midnight Navy + Indigo + Soft White** palette defined as
-design tokens in `css/style.css` (`:root` for light, `[data-theme="dark"]`
-for dark mode). All components and pages use these tokens, so restyling the
-whole site is a single-point change.
+The portal uses a **Warm Earth / Quiet Luxury** palette (cream, sand, taupe,
+sage, slate) defined as design tokens in `css/style.css` (`:root` for light,
+`[data-theme="dark"]` for dark mode). All components and pages use these tokens,
+so restyling the whole site is a single-point change.
 
-Light: `--bg #F8FAFC` · `--surface #FFFFFF` · `--surface-2 #F1F5F9` ·
-`--text #0F172A` · `--text-2 #475569` · `--muted #64748B` · `--border #E2E8F0` ·
-`--primary #4F46E5` · `--primary-hover #4338CA` · `--primary-2 #6366F1` ·
-`--focus-ring #818CF8` · sidebar `#0F172A` / `#111C33` · active nav `#312E81` ·
-status `#15803D/#F0FDF4` (success), `#B45309/#FFFBEB` (warning),
-`#B91C1C/#FEF2F2` (error), `#1D4ED8/#EFF6FF` (info).
+Light: `--bg #F4EBDD` (warm cream) · `--surface #ECE9E4` · `--surface-2 #E7D7C1`
+(sand) · `--text #2F3A3F` (dark slate) · `--text-2 #3A474D` · `--muted #4A585C` ·
+`--border #CBBBA0` (taupe) · `--primary #2F3A3F` · `--primary-hover #1E272B` ·
+`--primary-2 #9AA79A` (sage) · `--focus-ring #5A6B5E` · `--link #3D5248` ·
+sidebar `#2F3A3F` / `#3A474D` · active nav `#9AA79A` (dark slate text) ·
+status `#3F6B4E/#E3ECE3` (success), `#9A6B1F/#F1E7D2` (warning),
+`#9B3B2F/#F3E0DB` (error), `#3E5A7A/#E1E8F0` (info).
 
-Dark mode keeps the same brand story with indigo-tinted surfaces (`#0B1220`
-background, `#111C33`/`#16213B` panels, `#25324F` borders) and a bright
-indigo primary (`#818CF8`). The code editor deliberately stays dark in both
-themes (CodeMirror `material-darker`) so syntax highlighting stays readable.
+Dark mode inverts the same warm story (`#262F33` background, `#2F3A3F`/`#3A474D`
+panels, `#45545A` borders) with a sage primary (`#9AA79A`) and warm cream text
+(`#F4EBDD`). The code editor deliberately stays dark in both themes (CodeMirror
+`material-darker`) so syntax highlighting stays readable; only the editor chrome
+(borders, toolbar, output panels) uses the warm slate tones.
 
 ## Notes
 
