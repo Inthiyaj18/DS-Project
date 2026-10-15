@@ -21,6 +21,7 @@ All navigation uses plain `.html` files with query parameters (no router).
 | Dashboard (student ID card + learning-suggestion tiles) | `index.html` |
 | Subjects (Subject Management System: add/select/edit/delete) | `subjects.html` |
 | Experiments (search, experiment cards, **+ Add Experiment**) | `experiments.html` |
+| Projects (empty by default; Edit Mode → **＋ Add project** uploads a whole project folder) | `projects.html` |
 | Resources (documentation links) | `resources.html` |
 | Student profile (ID card + LinkedIn/GitHub/social links) | `profile.html` (or click the avatar at the top right of any page) |
 | Modules list | `modules.html` |
@@ -37,6 +38,7 @@ mbu-portal/
 ├── index.html            Dashboard (hero stats, ID card, learning suggestions)
 ├── subjects.html         Subjects list (Subject Management System)
 ├── experiments.html      Experiments page (search, cards, + Add Experiment modal)
+├── projects.html         Projects page (empty by default; Edit Mode uploads a project folder)
 ├── resources.html        Resources page (documentation links)
 ├── profile.html          Student profile page (ID card + social links)
 ├── modules.html          Modules list (5 modules)
@@ -52,6 +54,7 @@ mbu-portal/
 │   ├── subjects.js       Subjects page: cards with module/experiment counts, select/open
 │   ├── index.js          Dashboard: ID card, hero stats, learning-suggestion tiles
 │   ├── experiments.js    Experiments page: search, cards, Add Experiment modal
+│   ├── projects.js       Projects page: renders stored projects; Edit Mode add/edit/replace-folder/delete
 │   ├── resources.js      Resources page: common behaviour only (tiles are static HTML)
 │   ├── profile.js        Profile page: ID card + social-link buttons
 │   ├── modules.js        Modules list page
@@ -197,26 +200,51 @@ git push -u origin main
 
 To host it free: repository **Settings → Pages → Deploy from branch → main / root**.
 
+## Projects (upload a whole project folder)
+
+`projects.html` starts **empty** — the portal ships with no sample projects.
+Projects are added in **Edit Mode** (✎ in the top bar, or `Ctrl+Shift+E`):
+
+- **＋ Add project** — opens the OS folder picker (`<input webkitdirectory>`),
+  reads the **entire folder** including sub-folders, then asks for the project
+  name and description. Every file keeps its relative path, so `src/train.py`
+  is listed as `src/train.py`.
+- Per project card: **✎ Edit** (name / description), **⇪ Replace folder**
+  (re-upload the project files), **🗑 Delete** (with confirmation).
+- These controls are Edit-Mode only; normal visitors see the project cards and
+  can browse the file list.
+
+Storage reuses the existing `MBUData` store (`projects` key in
+`mbu-portal-data-v1`), so projects are included in the normal **Export /
+Import / Reset all** controls — no new persistence system was introduced.
+
+Because everything lives in `localStorage`, inline file text is capped to stay
+inside the browser quota: text-like files up to 180 KB each and 3 MB per
+project are stored for offline reading; binary or larger files are still listed
+with their name and size but keep no content. A toast reports how many files
+were listed by name only.
+
 ## Theme / color palette
 
-The portal uses a **Warm Earth / Quiet Luxury** palette (cream, sand, taupe,
-sage, slate) defined as design tokens in `css/style.css` (`:root` for light,
-`[data-theme="dark"]` for dark mode). All components and pages use these tokens,
-so restyling the whole site is a single-point change.
+The portal uses a **Bright Terracotta + Sandal** palette (bright ivory/sandal
+surfaces, vivid clay accent, deep espresso text) defined as design tokens in
+`css/style.css` (`:root` for light, `[data-theme="dark"]` for dark mode). All
+components and pages use these tokens, so restyling the whole site is a
+single-point change.
 
-Light: `--bg #F4EBDD` (warm cream) · `--surface #ECE9E4` · `--surface-2 #E7D7C1`
-(sand) · `--text #2F3A3F` (dark slate) · `--text-2 #3A474D` · `--muted #4A585C` ·
-`--border #CBBBA0` (taupe) · `--primary #2F3A3F` · `--primary-hover #1E272B` ·
-`--primary-2 #9AA79A` (sage) · `--focus-ring #5A6B5E` · `--link #3D5248` ·
-sidebar `#2F3A3F` / `#3A474D` · active nav `#9AA79A` (dark slate text) ·
-status `#3F6B4E/#E3ECE3` (success), `#9A6B1F/#F1E7D2` (warning),
-`#9B3B2F/#F3E0DB` (error), `#3E5A7A/#E1E8F0` (info).
+Light: `--bg #FDF2DE` (bright sandal) · `--surface #FFFBF3` (ivory) ·
+`--surface-2 #FBE7C6` (sand) · `--text #432C1B` (deep coffee) · `--text-2 #5E4229` ·
+`--muted #7A5A38` · `--border #F2D6A6` (golden sand) · `--primary #BD4D24`
+(terracotta) · `--primary-hover #A8431F` · `--primary-2 #E07A4A` (bright clay) ·
+`--focus-ring #C25228` · `--link #B2491F` · sidebar `#3A241A` / `#4A3022` ·
+active nav `#C25228` (white text) · status `#2E7D32/#E6F4E4` (success),
+`#B4740A/#FBEFD2` (warning), `#C62828/#FCE7E4` (error), `#1565C0/#E4F0FB` (info).
 
-Dark mode inverts the same warm story (`#262F33` background, `#2F3A3F`/`#3A474D`
-panels, `#45545A` borders) with a sage primary (`#9AA79A`) and warm cream text
-(`#F4EBDD`). The code editor deliberately stays dark in both themes (CodeMirror
-`material-darker`) so syntax highlighting stays readable; only the editor chrome
-(borders, toolbar, output panels) uses the warm slate tones.
+Dark mode inverts the same warm story (`#221610` background, `#2E1F17`/`#3C2A1E`
+panels, `#4E382A` borders) with a terracotta primary (`#E0714A`) and warm cream
+text (`#FBEFDD`). The code editor deliberately stays dark in both themes
+(CodeMirror `material-darker`) so syntax highlighting stays readable; only the
+editor chrome (borders, toolbar, output panels) uses the warm espresso tones.
 
 ## Notes
 

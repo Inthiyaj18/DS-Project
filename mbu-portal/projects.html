@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Projects | Mohan Babu University</title>
+  <meta name="description" content="Student projects - Data Science Laboratory, Mohan Babu University.">
+  <script>
+    try { var t = localStorage.getItem("mbu-theme"); if (t) document.documentElement.setAttribute("data-theme", t); } catch (e) {}
+  </script>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+  <div class="page-progress" aria-hidden="true"></div>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="overlay" id="overlay"></div>
+
+  <aside class="sidebar" id="sidebar" aria-label="Main navigation">
+    <div class="brand">
+      <span class="brand-logo" aria-hidden="true">MBU</span>
+      <div><strong>Mohan Babu University</strong><small>Data Science Laboratory</small></div>
+    </div>
+    <nav class="nav">
+      <a href="index.html" data-nav-id="dashboard"><span class="ico" aria-hidden="true">▦</span> Dashboard</a>
+      <a href="subjects.html" data-nav-id="subjects"><span class="ico" aria-hidden="true">◈</span> Subjects</a>
+      <a href="modules.html" data-nav-id="modules"><span class="ico" aria-hidden="true">❏</span> Modules</a>
+      <a href="experiments.html" data-nav-id="experiments"><span class="ico" aria-hidden="true">⚗</span> Experiments</a>
+      <a href="projects.html" data-nav-id="projects"><span class="ico" aria-hidden="true">◫</span> Projects</a>
+      <a href="resources.html" data-nav-id="resources"><span class="ico" aria-hidden="true">⌘</span> Resources</a>
+      <a href="profile.html" data-nav-id="profile"><span class="ico" aria-hidden="true">☺</span> Profile</a>
+    </nav>
+    <div class="sidebar-foot">Academic Year 2026–27</div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <button class="icon-btn menu-btn" id="menuBtn" type="button" aria-label="Open menu" aria-controls="sidebar" aria-expanded="false">☰</button>
+      <span class="topbar-title">Projects</span>
+      <div class="topbar-actions">
+        <button class="icon-btn" id="themeToggle" type="button" aria-label="Toggle dark mode">☾</button>
+        <a class="topbar-avatar" href="profile.html" data-nav aria-label="Open profile page" title="Profile">
+          <span class="avatar" id="topAvatar" aria-hidden="true">?</span>
+        </a>
+      </div>
+    </header>
+
+    <main id="main" class="page container">
+
+      <section class="page-hero" aria-labelledby="projPageTitle">
+        <span class="exp-tag">DATA SCIENCE LABORATORY</span>
+        <h1 id="projPageTitle">Projects</h1>
+        <p class="hero-lead">
+          Upload a complete project folder and browse it here. Nothing is
+          published or sent anywhere - every project stays in this browser.
+        </p>
+      </section>
+
+      <section class="projects-section" aria-labelledby="projListTitle">
+        <div class="projects-head">
+          <h2 id="projListTitle">Your projects</h2>
+          <div class="projects-tools adm-ui" id="projTools"></div>
+        </div>
+        <div id="projGrid" class="grid" role="list"></div>
+        <div class="empty" id="projEmpty">
+          <div class="empty-icon" aria-hidden="true">◫</div>
+          <h3>No projects yet</h3>
+          <p class="muted">Turn on Edit Mode and use <em>Add project</em> to upload your first project folder.</p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">© 2026 Mohan Babu University · Data Science Laboratory</footer>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/data-store.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/projects.js"></script>
+  <!-- Edit / Admin Mode -->
+  <script src="js/admin.js"></script>
+</body>
+</html>

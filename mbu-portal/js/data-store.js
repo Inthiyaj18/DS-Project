@@ -16,7 +16,10 @@
       learningSuggestions: (typeof learningSuggestions !== "undefined") ? clone(learningSuggestions) : [],
       subjects: (typeof subjectConfigs !== "undefined") ? clone(subjectConfigs) : [],
       experimentConfigs: (typeof experimentConfigs !== "undefined") ? clone(experimentConfigs) : [],
-      moduleConfigs: (typeof moduleConfigs !== "undefined") ? clone(moduleConfigs) : []
+      moduleConfigs: (typeof moduleConfigs !== "undefined") ? clone(moduleConfigs) : [],
+      /* Uploaded project folders. Intentionally empty by default: the portal
+         ships with no sample projects, they are added in Edit Mode. */
+      projects: []
     };
     return defaults;
   }
@@ -77,7 +80,8 @@
       learningSuggestions: Array.isArray(stored.learningSuggestions) ? stored.learningSuggestions : def.learningSuggestions,
       subjects: Array.isArray(stored.subjects) && stored.subjects.length ? stored.subjects : def.subjects,
       experimentConfigs: Array.isArray(stored.experimentConfigs) ? stored.experimentConfigs : def.experimentConfigs,
-      moduleConfigs: Array.isArray(stored.moduleConfigs) ? stored.moduleConfigs : def.moduleConfigs
+      moduleConfigs: Array.isArray(stored.moduleConfigs) ? stored.moduleConfigs : def.moduleConfigs,
+      projects: Array.isArray(stored.projects) ? stored.projects : def.projects
     };
     return ensureSubjects(merged);
   }
@@ -95,7 +99,8 @@
       learningSuggestions: next.learningSuggestions || state.learningSuggestions,
       subjects: next.subjects || state.subjects,
       experimentConfigs: next.experimentConfigs || state.experimentConfigs,
-      moduleConfigs: next.moduleConfigs || state.moduleConfigs
+      moduleConfigs: next.moduleConfigs || state.moduleConfigs,
+      projects: next.projects || state.projects
     });
     saveStored(state);
     window.dispatchEvent(new CustomEvent("mbu:data-changed"));

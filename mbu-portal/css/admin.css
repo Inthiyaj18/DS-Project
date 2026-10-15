@@ -142,14 +142,14 @@ body.adm-on .adm-entry {
 
 .adm-mini.danger:hover,
 .adm-mini.danger:focus-visible {
-  border-color: #9b3b2f;
-  color: #9b3b2f;
+  border-color: #c62828;
+  color: #c62828;
 }
 
 [data-theme="dark"] .adm-mini.danger:hover,
 [data-theme="dark"] .adm-mini.danger:focus-visible {
-  border-color: #d98a7a;
-  color: #d98a7a;
+  border-color: #f08a7a;
+  color: #f08a7a;
 }
 
 /* ---------- admin action strips -------------------------------------- */
@@ -254,13 +254,13 @@ body.adm-on .adm-entry {
 
 /* ---------- generic admin dialog (confirm / form) --------------------- */
 .adm-dialog-error {
-  color: #9b3b2f;
+  color: #c62828;
   font-size: 0.85rem;
   margin-top: 8px;
 }
 
 [data-theme="dark"] .adm-dialog-error {
-  color: #d98a7a;
+  color: #f08a7a;
 }
 
 .adm-form-field {
@@ -295,14 +295,14 @@ body.adm-on .adm-entry {
 
 .btn-adm-danger {
   color: #fff;
-  background: #9b3b2f;
-  border: 1px solid #9b3b2f;
+  background: #c62828;
+  border: 1px solid #c62828;
 }
 
 .btn-adm-danger:hover,
 .btn-adm-danger:focus-visible {
-  background: #7a2e24;
-  border-color: #7a2e24;
+  background: #9e1f1f;
+  border-color: #9e1f1f;
   color: #fff;
 }
 
@@ -320,7 +320,7 @@ body.adm-on .adm-entry {
   font-size: 0.86rem;
   line-height: 1.55;
   tab-size: 4;
-  color: #f4ebdd;
+  color: #f6e3cc;
   background: var(--code-bg);
   border: 1px solid var(--border);
   border-radius: 12px;
@@ -373,7 +373,7 @@ body.adm-on .adm-entry {
 }
 
 [data-theme="dark"] .adm-seg .btn.active {
-  color: #2f3a3f;
+  color: #3a241a;
 }
 
 #fileViewerBody .adm-seg {
@@ -387,7 +387,7 @@ body.adm-on .adm-entry {
   z-index: 130;
   display: none;
   flex-direction: column;
-  background: rgba(38, 47, 51, 0.94);
+  background: rgba(58, 36, 26, 0.94);
   -webkit-backdrop-filter: blur(6px);
   backdrop-filter: blur(6px);
 }
@@ -451,7 +451,7 @@ body.adm-on .adm-entry {
 .pdf-book-page {
   position: relative;
   transform-style: preserve-3d;
-  background: #f4ebdd;
+  background: #fdf2de;
   box-shadow: 0 18px 48px rgba(0, 0, 0, 0.55);
   transition: transform 0.32s ease, opacity 0.32s ease;
 }
@@ -488,7 +488,7 @@ body.adm-on .adm-entry {
   height: 72px;
   font-size: 1.2rem;
   color: #fff;
-  background: rgba(38, 47, 51, 0.65);
+  background: rgba(58, 36, 26, 0.65);
   border: 1px solid rgba(255, 255, 255, 0.35);
   border-radius: 10px;
   cursor: pointer;
@@ -498,7 +498,7 @@ body.adm-on .adm-entry {
 .pdf-book-nav:hover,
 .pdf-book-nav:focus-visible {
   opacity: 1;
-  background: rgba(38, 47, 51, 0.9);
+  background: rgba(58, 36, 26, 0.9);
 }
 
 .pdf-book-nav.prev { left: 10px; }
@@ -514,10 +514,10 @@ body.adm-on .adm-entry {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  color: #f4ebdd;
+  color: #f6e3cc;
   font-size: 0.92rem;
   padding: 14px 20px;
-  background: rgba(38, 47, 51, 0.85);
+  background: rgba(58, 36, 26, 0.85);
   border-radius: 12px;
 }
 
