@@ -287,7 +287,8 @@ editor chrome (borders, toolbar, output panels) uses the warm espresso tones.
 ## Notes
 
 - **Storage (all per browser, no server):**
-  - `localStorage["mbu-portal-data-v1"]` – the merged content state: `subjects` + `experimentConfigs` + `moduleConfigs` (Edit Mode edits, “+ Add Experiment”, subjects, everything). Remove this key (or use **Reset all** in Edit Mode) to return to the built-in content.
+  - `localStorage["mbu-portal-data-v1"]` – the merged content state: `contentVersion` + `subjects` + `experimentConfigs` + `moduleConfigs` + `projects` (Edit Mode edits, “+ Add Experiment”, subjects, everything). Remove this key (or use **Reset all** in Edit Mode) to return to the built-in content.
+  - **New built-in content vs saved edits:** `js/data-store.js` defines `CONTENT_VERSION` (currently `2`). Bump it whenever built-in experiments or modules are added. On the next page load an older saved snapshot is automatically given the built-in entries it does not contain — saved names/edits are kept — and is then stamped with the current version, so experiments deleted afterwards stay deleted. This is why experiments 07–10 show up in browsers that had already saved data; **Reset all** is not required.
   - `localStorage["mbu-selected-subject"]` – the id of the currently selected subject (also carried per link/page as `?subject=<id>`); used to restore the selection on your next visit.
   - `localStorage["mbu-theme"]`, `localStorage["mbu-custom-experiments"]` – dark/light choice and the original “+ Add Experiment” list (unchanged).
   - `IndexedDB["mbu-portal-files"]` – files uploaded through Edit Mode (materials / experiment files / module PDFs), referenced as `mbu-blob:<id>`.
