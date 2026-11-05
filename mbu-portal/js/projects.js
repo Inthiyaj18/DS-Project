@@ -166,48 +166,65 @@
   }
 
   /* ---------------- add / edit actions (Edit Mode only) ---------------- */
-  async function addProject() {
-    const files = await pickFolder();
-    if (!files || !files.length) { window.MBUAdmin.toast("No folder selected."); return; }
-
-    const folder = folderNameFrom(files);
-    const { entries, trimmed } = await readFolder(files);
-    const total = entries.reduce((sum, e) => sum + e.size, 0);
-
-    const values = await window.MBUAdmin.prompt("Add project", [
-      {
-        key: "name", label: "Project name", required: true,
-        value: folder, placeholder: "e.g. Sales Forecasting"
-      },
-      {
-        key: "description", label: "Description", type: "textarea",
-        value: "", placeholder: "What does this project do?"
-      }
-    ], { okLabel: "Save project" });
-    if (!values) return;
-
-    const list = readProjects();
-    list.unshift({
-      id: newId(),
-      name: String(values.name || folder).trim() || folder,
-      description: String(values.description || "").trim(),
-      folder: folder,
-      subjectId: subjectId(),
-      createdAt: new Date().toISOString(),
-      updatedAt: new Date().toISOString(),
-      fileCount: entries.length,
-      totalSize: total,
-      files: entries
-    });
-
-    if (!writeProjects(list)) {
-      window.MBUAdmin.toast("Could not save: browser storage is full or blocked.");
-      return;
+  /* Guards against a second dialog while a folder is being read. */
+  let folderBusy = false;
+  function setFolderBusy(on) {
+    folderBusy = on;
+    const btn = $("#projAddBtn");
+    if (btn) {
+      btn.disabled = on;
+      btn.setAttribute("aria-busy", on ? "true" : "false");
     }
-    render();
-    window.MBUAdmin.toast("✓ " + entries.length + " file(s) added");
-    if (trimmed) {
-      window.MBUAdmin.toast(trimmed + " large file(s) listed by name only (storage limit).");
+  }
+
+  async function addProject() {
+    if (folderBusy) return;
+    setFolderBusy(true);
+    try {
+      const files = await pickFolder();
+      if (!files || !files.length) { window.MBUAdmin.toast("No folder selected."); return; }
+
+      const folder = folderNameFrom(files);
+      const { entries, trimmed } = await readFolder(files);
+      const total = entries.reduce((sum, e) => sum + e.size, 0);
+
+      const values = await window.MBUAdmin.prompt("Add project", [
+        {
+          key: "name", label: "Project name", required: true,
+          value: folder, placeholder: "e.g. Sales Forecasting"
+        },
+        {
+          key: "description", label: "Description", type: "textarea",
+          value: "", placeholder: "What does this project do?"
+        }
+      ], { okLabel: "Save project" });
+      if (!values) return;
+
+      const list = readProjects();
+      list.unshift({
+        id: newId(),
+        name: String(values.name || folder).trim() || folder,
+        description: String(values.description || "").trim(),
+        folder: folder,
+        subjectId: subjectId(),
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+        fileCount: entries.length,
+        totalSize: total,
+        files: entries
+      });
+
+      if (!writeProjects(list)) {
+        window.MBUAdmin.toast("Could not save: browser storage is full or blocked.");
+        return;
+      }
+      render();
+      window.MBUAdmin.toast("✓ " + entries.length + " file(s) added");
+      if (trimmed) {
+        window.MBUAdmin.toast(trimmed + " large file(s) listed by name only (storage limit).");
+      }
+    } finally {
+      setFolderBusy(false);
     }
   }
 
@@ -239,22 +256,28 @@
   }
 
   async function replaceFolder(id) {
-    const list = readProjects();
-    const idx = list.findIndex((p) => p.id === id);
-    if (idx < 0) return;
-    const files = await pickFolder();
-    if (!files || !files.length) { window.MBUAdmin.toast("No folder selected."); return; }
+    if (folderBusy) return;
+    setFolderBusy(true);
+    try {
+      const list = readProjects();
+      const idx = list.findIndex((p) => p.id === id);
+      if (idx < 0) return;
+      const files = await pickFolder();
+      if (!files || !files.length) { window.MBUAdmin.toast("No folder selected."); return; }
 
-    const { entries, trimmed } = await readFolder(files);
-    list[idx].folder = folderNameFrom(files);
-    list[idx].files = entries;
-    list[idx].fileCount = entries.length;
-    list[idx].totalSize = entries.reduce((sum, e) => sum + e.size, 0);
-    list[idx].updatedAt = new Date().toISOString();
-    if (!writeProjects(list)) { window.MBUAdmin.toast("Could not save: storage is full or blocked."); return; }
-    render();
-    window.MBUAdmin.toast("✓ Folder replaced (" + entries.length + " files)");
-    if (trimmed) window.MBUAdmin.toast(trimmed + " large file(s) listed by name only (storage limit).");
+      const { entries, trimmed } = await readFolder(files);
+      list[idx].folder = folderNameFrom(files);
+      list[idx].files = entries;
+      list[idx].fileCount = entries.length;
+      list[idx].totalSize = entries.reduce((sum, e) => sum + e.size, 0);
+      list[idx].updatedAt = new Date().toISOString();
+      if (!writeProjects(list)) { window.MBUAdmin.toast("Could not save: storage is full or blocked."); return; }
+      render();
+      window.MBUAdmin.toast("✓ Folder replaced (" + entries.length + " files)");
+      if (trimmed) window.MBUAdmin.toast(trimmed + " large file(s) listed by name only (storage limit).");
+    } finally {
+      setFolderBusy(false);
+    }
   }
 
   async function deleteProject(id) {
@@ -322,14 +345,11 @@
     if (empty) empty.style.display = list.length ? "none" : "";
     grid.style.display = list.length ? "" : "none";
 
-    /* Edit Mode controls are rebuilt with the cards so the two never drift. */
-    const tools = $("#projTools");
-    if (tools) {
-      tools.innerHTML =
-        '<button class="btn btn-primary adm-ui" type="button" id="projAddBtn">＋ Add project</button>';
-      const addBtn = $("#projAddBtn");
-      if (addBtn) addBtn.addEventListener("click", addProject);
-    }
+    /* NOTE: the "Add project" button lives in projects.html and is bound
+       once in start().  It used to be rebuilt here on every render, but
+       that meant the admin MutationObserver could replace the element
+       between mousedown and mouseup - the click was lost and the folder
+       picker never opened.  Keeping it static makes the button reliable. */
 
     grid.querySelectorAll("[data-prj-edit]").forEach((btn) => {
       btn.addEventListener("click", () => editProject(btn.dataset.prjEdit));
@@ -346,10 +366,14 @@
   function start() {
     initCommon("projects");
     render();
-    if (window.MBUAdmin) {
-      /* Runs on activate and again whenever the page re-renders. */
-      window.MBUAdmin.register(render);
-    }
+
+    /* Bind the static Add button exactly once.  Edit-Mode visibility is
+       handled purely by CSS (.adm-ui), so we must NOT register render()
+       as an admin enhancer: that made the MutationObserver re-render the
+       page every ~180 ms and swallow real clicks on the upload button. */
+    const addBtn = $("#projAddBtn");
+    if (addBtn) addBtn.addEventListener("click", addProject);
+
     window.addEventListener("mbu:data-changed", render);
   }
 

@@ -31,6 +31,44 @@ All navigation uses plain `.html` files with query parameters (no router).
 
 Every sidebar option opens its **own dedicated page** — nothing scrolls to another section of a different page. Every content page carries the selected subject in `?subject=<id>` (see **Subjects** below). Unknown IDs (`module.html?id=99`, a bad experiment id) render a friendly “not found” page with a link back.
 
+## Experiments
+
+The built-in Data Science subject ships with **ten experiments**, each with its own
+sub-experiments, code, results and downloadable materials. Content lives in
+`experimentConfigs` in `js/data.js`; the notebook and dataset attachments live in
+`assets/files/imported/`.
+
+| # | Experiment | Sub-experiments | Materials |
+|---|---|---|---|
+| 01 | Python and NumPy for Data Science | 01A–01I | `experiment-01-numpy-notes.pdf`, `experiment-01-quick-reference.txt`, `1-Case-1 (1).ipynb`, `1-a-case-3 (1).ipynb` |
+| 02 | Pandas and Data Manipulation | 02A–02I | `2nd-exp-ds (1).ipynb` |
+| 03 | Data Cleaning and Preprocessing | 03A–03K | `3rd-exp-ds (1).ipynb` |
+| 04 | Exploratory Data Analysis (EDA) | 04A–04N | `DS-ex-4.ipynb`, `matplotlib1.ipynb` |
+| 05 | Data Visualization with Matplotlib and Seaborn | 05A–05G | — (charts drawn in the Code Lab) |
+| 06 | Machine Learning Fundamentals with Scikit-learn | 06A–06G | `experiment-06-evaluation-checklist.txt` |
+| 07 | Data Grouping and Aggregation | 7A–7C | `DS-Ex7.ipynb` |
+| 08 | Web Scraping and Sentiment Analysis | 8A–8E | `DS-Ex8.ipynb`, `experiment-08-reviews.html`, `experiment-08-product-reviews.csv`, `experiment-08-sample-reviews.csv` |
+| 09 | Customer Segmentation using K-Means Clustering | 9A–9D | `DS-9.ipynb` |
+| 10 | Emotion Detection using Machine Learning | 10A–10C | `DS_Exp_10.ipynb` |
+
+Each experiment page lists its materials in the **Experiment Files** panel; the
+sub-experiment pages contain the lab code and the output captured from the
+original notebooks. Experiments 07–10 were written from the downloaded lab
+notebooks (`DS-Ex7.ipynb`, `DS-Ex8.ipynb`, `DS-9.ipynb`, `DS_Exp_10.ipynb`), and
+their numbers, names and results match those notebooks.
+
+- **07 – Data Grouping and Aggregation:** single-key and multi-key `groupby`,
+  `aggregate()` summaries and an Iris species profile.
+- **08 – Web Scraping and Sentiment Analysis:** BeautifulSoup review extraction,
+  word clouds, text statistics and NLTK/VADER sentiment scoring. Its saved
+  `reviews.html` page and both review CSVs are attached.
+- **09 – Customer Segmentation using K-Means Clustering:** cleaning and
+  standardising the marketing data, an elbow + silhouette search (best K = 2,
+  silhouette 0.481) and segment profiling.
+- **10 – Emotion Detection using Machine Learning:** a
+  TF-IDF + logistic-regression pipeline over labelled sentences, with accuracy,
+  a classification report and emoji output.
+
 ## Folder structure
 
 ```
@@ -256,7 +294,7 @@ editor chrome (borders, toolbar, output panels) uses the warm espresso tones.
   - `localStorage["mbu-admin-pass"]` – the admin password (only used when the password gate is enabled; currently Edit Mode is password-less, so this is unused).
   - `sessionStorage["mbu-admin-session"]` – keeps Edit Mode on while you move between pages; cleared when the tab closes or you press Exit.
   - **Export / Import** in the Edit Mode toolbar moves all of this between browsers as one `mbu-portal-data.json` file.
-- **Imported notebooks:** the lab record's Jupyter notebooks were imported into `assets/files/imported/` and linked automatically — as materials on experiments 01–04 and as sub-experiment tabs (e.g. `subexperiment.html?experiment=04&sub=4N`). To re-import after changing the notebooks, run `python import_notebooks.py` from the project root (`MBU-DS-pro/`; needs the `nbformat` package).
+- **Imported notebooks:** the lab record's Jupyter notebooks were imported into `assets/files/imported/` and linked automatically — as materials on experiments 01–04 and 07–10 and as sub-experiment tabs (e.g. `subexperiment.html?experiment=04&sub=4N`). To re-import after changing the notebooks, run `python import_notebooks.py` from the project root (`MBU-DS-pro/`; needs the `nbformat` package). The experiments 07–10 notebooks and the experiment 08 HTML/CSV dataset files were copied in directly and are documented in the **Experiments** table above.
 - The Seaborn example datasets are **bundled with the site** (`assets/datasets/` + `js/datasets.js`), so `sns.load_dataset("tips"/"iris"/"penguins"/"titanic")` and the other bundled names work with **no internet at execution time**. Refreshing them (`python tools/build_datasets.py`) does need internet.
 - Internet is only needed for: the CDNs (CodeMirror + plotly.js on cdnjs/plot.ly, Pyodide on jsdelivr, **pdf.js 3.11.174 on cdnjs — only when you use the PDF Book view**, vega/vega-lite/vega-embed on jsdelivr for altair, `@bokeh/bokehjs@3.6.3` on jsdelivr for bokeh), PyPI wheels (`seaborn`, `openpyxl`, `plotly`), non-bundled `sns.load_dataset` names and Judge0 — the pages, styles, content, PDFs and the bundled datasets are all local.
 - Connecting a Jupyter kernel running on your machine was deliberately **not** done: a static page cannot talk to it without a helper server (CORS/auth), and any website could then execute code on your kernel. The built-in sandbox gives the same notebook feel offline instead.

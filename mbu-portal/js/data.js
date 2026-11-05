@@ -1248,7 +1248,828 @@ Report: precision, recall and F1 close to 1.00 for each species.`,
         "Mistakes, if any, occur between versicolor and virginica. Reading per-class metrics is more informative than a single accuracy figure."
       ]
     ]
+  },
+  
+  /* ------------------------------------------------------------ 07 */
+  {
+    id: "07",
+    name: "Data Grouping and Aggregation",
+    topic: "Pandas GroupBy Aggregation",
+    tools: ["Python 3", "Pandas", "Jupyter Notebook"],
+    description:
+      "Learn how to split a dataset into meaningful groups and summarise each group with Pandas groupby, multi-key grouping and aggregate statistics.",
+    overview:
+      "Real datasets are usually analysed group by group: average marks per department, total sales per region, or summary statistics per species. Pandas groupby performs the split-apply-combine workflow that makes this possible in a few lines. This experiment moves from single-key grouping to multi-key grouping and custom aggregate functions.",
+    aim:
+      "To group tabular data by one or more keys and calculate summary statistics for each group using Pandas.",
+    problem:
+      "A flat table hides useful structure. An examiner, manager or analyst needs the same measure computed separately for every category, and doing that with manual loops is slow and error-prone.",
+    dataset: {
+      name: "Student marks table and the Iris flower dataset",
+      source: "A small table created in Python plus the public Iris dataset",
+      records: "8 student rows, then 150 Iris rows",
+      features: "Name, Department, Year, Marks, Attendance; sepal and petal measurements",
+      types: "Text categories and numeric measurements"
+    },
+    methodology: [
+      "Create a small student-marks DataFrame.",
+      "Group by a single key and inspect each group.",
+      "Group by multiple keys to build a finer breakdown.",
+      "Apply sum, mean and standard deviation with aggregate().",
+      "Repeat single-key and multi-key grouping on the Iris dataset."
+    ],
+    analysis:
+      "The grouped averages are compared with the overall average to show how a single figure can hide differences between departments. The Iris analysis compares species using count, sum, mean, standard deviation, minimum and maximum.",
+    results:
+      "A per-department and per-department-year average marks table, a multi-metric summary of marks and attendance, and a complete species-level statistical profile of the Iris measurements.",
+    architecture: [
+      "Flat DataFrame",
+      "Split by Key",
+      "Apply Aggregation",
+      "Combine Groups",
+      "Grouped Summary"
+    ],
+    files: [
+      { name: "Experiment 07 - GroupBy Notebook (DS-Ex7.ipynb)", type: "ipynb", url: "assets/files/imported/DS-Ex7.ipynb", size: "13.6 KB", date: "2026-11-05" }
+    ],
+    subs: [
+      [
+        "Grouping by a Single and Multiple Keys",
+        "To split a DataFrame into groups and inspect the records inside each group.",
+        "groupby() partitions rows that share a key value. Iterating over the resulting object yields the key and the matching rows. Passing a list of column names groups by the combination of values, which produces a finer breakdown than a single key.",
+        "Create the student DataFrame|Group by Department and print each group|Calculate average marks per department|Group by Department and Year|Print the multi-key averages",
+        `import pandas as pd
+
+data = {
+    "Name": ["Ravi", "Sita", "Arun", "Priya",
+             "Kiran", "Anil", "Lakshmi", "Rahul"],
+    "Department": ["CSE", "CSE", "ECE", "ECE",
+                   "CSE", "ECE", "CSE", "ECE"],
+    "Year": [2, 2, 3, 3, 2, 3, 3, 2],
+    "Marks": [85, 90, 78, 88, 75, 82, 95, 70]
+}
+
+df = pd.DataFrame(data)
+print("Original DataFrame:")
+print(df)
+
+print("\\n1. Group by Department:")
+for name, group in df.groupby("Department"):
+    print("\\nDepartment:", name)
+    print(group)
+
+print("\\nAverage Marks by Department:")
+print(df.groupby("Department")["Marks"].mean())
+
+print("\\n2. Group by Department and Year:")
+for name, group in df.groupby(["Department", "Year"]):
+    print("\\nGroup:", name)
+    print(group)
+
+print("\\nAverage Marks by Department and Year:")
+print(df.groupby(["Department", "Year"])["Marks"].mean())`,
+        `Average Marks by Department:
+Department
+CSE    86.25
+ECE    79.50
+Name: Marks, dtype: float64
+
+Average Marks by Department and Year:
+Department  Year
+CSE         2       83.333333
+            3       95.000000
+ECE         2       70.000000
+            3       82.666667
+Name: Marks, dtype: float64`,
+        "CSE averages 86.25 and ECE 79.50, but the multi-key view shows that CSE Year 2 actually scores below CSE Year 3. Grouping at a finer level exposes differences the single key conceals."
+      ],
+      [
+        "Aggregating Summary Statistics by Group",
+        "To compute several statistics for every group in one call.",
+        "aggregate() accepts a dictionary that maps each column to the statistics that should be calculated. The result is a multi-level table containing, for example, the sum, mean and standard deviation of both marks and attendance for every department.",
+        "Build a marks and attendance DataFrame|Group by Department|Apply sum, mean and std to both columns|Display the summary table",
+        `import pandas as pd
+
+data = {
+    "Department": ["CSE", "CSE", "CSE",
+                   "ECE", "ECE", "ECE",
+                   "EEE", "EEE", "EEE"],
+    "Marks": [80, 75, 85, 70, 65, 75, 90, 85, 95],
+    "Attendance": [90, 85, 95, 80, 75, 85, 95, 90, 100]
+}
+
+df = pd.DataFrame(data)
+
+result = df.groupby("Department").aggregate({
+    "Marks": ["sum", "mean", "std"],
+    "Attendance": ["sum", "mean", "std"]
+})
+
+print("Original DataFrame:")
+print(df)
+print("\\nSummary Statistics:")
+print(result)`,
+        `           Marks            Attendance
+             sum  mean  std        sum  mean  std
+Department
+CSE          240  80.0  5.0        270  90.0  5.0
+ECE          210  70.0  5.0        240  80.0  5.0
+EEE          270  90.0  5.0        285  95.0  5.0`,
+        "Each department is summarised by six numbers. The standard deviation of 5.0 in every group shows that the marks and attendance values are equally spread within each department."
+      ],
+      [
+        "GroupBy Analysis of the Iris Dataset",
+        "To apply single-key and multi-key grouping to a real dataset and compare species.",
+        "The Iris dataset stores four measurements for 150 flowers across three species. Grouping by species turns a flat measurement table into a per-species profile, while grouping by species and sepal width shows how a second key splits each species further.",
+        "Load the Iris dataset|Display the first rows and describe() summary|Group by species and aggregate sepal length|Group by species and sepal width|Print per-species means and maximums",
+        `import pandas as pd
+
+url = "https://raw.githubusercontent.com/mwaskom/seaborn-data/master/iris.csv"
+df = pd.read_csv(url)
+
+print("First 5 Records:")
+print(df.head())
+
+print("\\nStatistical Summary:")
+print(df.describe())
+
+print("\\n1. GroupBy using a Single Column:")
+print(df.groupby("species")["sepal_length"].agg(
+    ["count", "sum", "mean", "std", "min", "max"]
+))
+
+print("\\n2. GroupBy using Multiple Columns:")
+print(df.groupby(["species", "sepal_width"])["sepal_length"].mean().head(15))
+
+print("\\n3. Records in Each Species:")
+print(df["species"].value_counts())
+
+print("\\nAverage Petal Length by Species:")
+print(df.groupby("species")["petal_length"].mean())
+
+print("\\nAverage Petal Width by Species:")
+print(df.groupby("species")["petal_width"].mean())
+
+print("\\nMaximum Sepal Length by Species:")
+print(df.groupby("species")["sepal_length"].max())`,
+        `1. GroupBy using a Single Column:
+          count   sum   mean       std  min  max
+species
+setosa       50  250.3  5.006  0.352490  4.3  5.8
+versicolor   50  296.8  5.936  0.516171  4.9  7.0
+virginica    50  329.4  6.588  0.635880  4.9  7.9
+
+3. Records in Each Species:
+setosa        50
+versicolor    50
+virginica     50
+
+Average Petal Length by Species:
+setosa        1.464
+versicolor    4.260
+virginica     5.552
+
+Average Petal Width by Species:
+setosa        0.246
+versicolor    1.326
+virginica     2.026
+
+Maximum Sepal Length by Species:
+setosa        5.8
+versicolor    7.0
+virginica     7.9`,
+        "Petal length and width separate the three species far more clearly than sepal length: setosa petals are short and narrow, while virginica petals are longest and widest. Grouped summaries are therefore a quick way to find which measurements carry real information."
+      ]
+    ]
+  },
+
+  /* ------------------------------------------------------------ 08 */
+  {
+    id: "08",
+    name: "Web Scraping and Sentiment Analysis",
+    topic: "BeautifulSoup NLP VADER Sentiment Analysis",
+    tools: ["Python 3", "BeautifulSoup", "Pandas", "NLTK", "vaderSentiment", "Matplotlib", "Seaborn", "WordCloud"],
+    description:
+      "Extract product reviews from an HTML page, then analyse the text with word clouds, token statistics and VADER sentiment scoring.",
+    overview:
+      "Unstructured text is one of the richest data sources in data science. This experiment builds a small text-analysis pipeline: BeautifulSoup extracts review text from saved HTML, Pandas stores it as a table, and NLTK plus VADER quantify sentiment. Word clouds and distribution charts make the patterns visible.",
+    aim:
+      "To scrape review text from HTML and measure the sentiment, vocabulary and structure of that text using Python.",
+    problem:
+      "Customer opinions arrive as free text rather than numbers. An analyst needs a repeatable way to collect the reviews, classify each one as positive or negative, and summarise the reasons behind the scores.",
+    dataset: {
+      name: "Sample product reviews",
+      source: "reviews.html (a saved page of illustrative reviews) converted to product_reviews.csv",
+      records: "20 reviews",
+      features: "title, review, rating",
+      types: "Text and short category labels"
+    },
+    methodology: [
+      "Parse the saved HTML with BeautifulSoup and select each review block.",
+      "Store the extracted title, review and rating in a DataFrame.",
+      "Generate word clouds for all, positive and negative reviews.",
+      "Count words, characters, numeric tokens and stopwords.",
+      "Score every review with NLTK VADER and the standalone vaderSentiment package.",
+      "Visualise sentiment intensity and save the analysis outputs."
+    ],
+    analysis:
+      "The experiment compares the two VADER implementations, inspects how compound scores separate positive from negative reviews, and uses stopword frequency and word statistics to describe the vocabulary.",
+    results:
+      "A 20-row review table, word-cloud images, text-statistics distributions, a sentiment table and a scatter plot of compound scores. VADER classifies 12 reviews as positive and 8 as negative.",
+    architecture: [
+      "HTML Page",
+      "BeautifulSoup Extraction",
+      "Review DataFrame",
+      "Text Statistics and Word Clouds",
+      "VADER Sentiment Scoring",
+      "Visualisation and Export"
+    ],
+    files: [
+      { name: "Experiment 08 - Sentiment Analysis Notebook (DS-Ex8.ipynb)", type: "ipynb", url: "assets/files/imported/DS-Ex8.ipynb", size: "1.2 MB", date: "2026-11-05" },
+      { name: "Experiment 08 - Reviews page (reviews.html)", type: "html", url: "assets/files/imported/experiment-08-reviews.html", size: "4.4 KB", date: "2026-11-05" },
+      { name: "Experiment 08 - Product reviews (product_reviews.csv)", type: "csv", url: "assets/files/imported/experiment-08-product-reviews.csv", size: "1.9 KB", date: "2026-11-05" },
+      { name: "Experiment 08 - Sample reviews (sample_reviews.csv)", type: "csv", url: "assets/files/imported/experiment-08-sample-reviews.csv", size: "1.9 KB", date: "2026-11-05" }
+    ],
+    subs: [
+      [
+        "Extracting Reviews with BeautifulSoup",
+        "To read an HTML page and turn repeated review blocks into a structured table.",
+        "BeautifulSoup builds a searchable tree from HTML. select() finds every element with the review class, and select_one() pulls the title, text and rating from inside each block. The cleaned records are then written to CSV.",
+        "Open the saved reviews.html file|Parse it with BeautifulSoup|Select every review block|Extract title, review text and rating|Build a DataFrame and save product_reviews.csv",
+        `from bs4 import BeautifulSoup
+import pandas as pd
+
+with open("reviews.html", "r", encoding="utf-8") as file:
+    html_content = file.read()
+
+soup = BeautifulSoup(html_content, "html.parser")
+review_blocks = soup.select(".review")
+records = []
+
+for block in review_blocks:
+    review_element = block.select_one(".review-text")
+    rating_element = block.select_one(".rating")
+    title_element = block.select_one(".review-title")
+
+    review = review_element.get_text(" ", strip=True) if review_element else ""
+    rating = rating_element.get_text(" ", strip=True) if rating_element else ""
+    title = title_element.get_text(" ", strip=True) if title_element else ""
+
+    if review:
+        records.append({"title": title, "review": review, "rating": rating})
+
+df = pd.DataFrame(records)
+df.to_csv("product_reviews.csv", index=False, encoding="utf-8-sig")
+
+print(df.head())
+print("Total reviews extracted:", len(df))`,
+        `             title                                             review     rating
+0    Great product  Excellent quality and very useful product. Del...  5 out of 5
+1     Poor quality  Poor quality and the product stopped working a...  2 out of 5
+2     Worth buying  Good performance and excellent value for money...  4 out of 5
+3   Bad experience  Very bad product. I am disappointed and custom...  1 out of 5
+4  Excellent value  Great product with amazing features and a clea...  5 out of 5
+
+Total reviews extracted: 20`,
+        "Every repeated review block was captured with its title, text and rating. Selecting by CSS class is robust because it does not depend on the exact position of a review on the page."
+      ],
+      [
+        "Word Clouds and VADER Sentiment",
+        "To summarise review vocabulary visually and label each review as positive or negative.",
+        "A word cloud sizes words by frequency, giving an instant impression of the dominant terms. VADER returns a compound score between -1 and +1; scores of at least 0.05 are treated as positive and scores of -0.05 or below as negative.",
+        "Load the review CSV|Create a VADER analyser and classify each review|Join all reviews into one string|Generate word clouds for all, positive and negative reviews|Save the labelled table",
+        `import pandas as pd
+import matplotlib.pyplot as plt
+from wordcloud import WordCloud
+from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
+
+df = pd.read_csv("product_reviews.csv")
+df["review"] = df["review"].fillna("").astype(str)
+
+analyzer = SentimentIntensityAnalyzer()
+
+def classify_sentiment(text):
+    score = analyzer.polarity_scores(text)["compound"]
+    if score >= 0.05:
+        return "Positive"
+    if score <= -0.05:
+        return "Negative"
+    return "Neutral"
+
+df["sentiment"] = df["review"].apply(classify_sentiment)
+
+def generate_wordcloud(text, title, filename):
+    if not text.strip():
+        print("No text available for:", title)
+        return
+    cloud = WordCloud(width=1200, height=600, background_color="white",
+                      max_words=150, collocations=False).generate(text)
+    plt.figure(figsize=(12, 6))
+    plt.imshow(cloud, interpolation="bilinear")
+    plt.axis("off")
+    plt.title(title)
+    plt.savefig(filename, dpi=300, bbox_inches="tight")
+    plt.show()
+
+generate_wordcloud(" ".join(df["review"]), "WordCloud - All Reviews", "wordcloud_all.png")
+generate_wordcloud(" ".join(df.loc[df["sentiment"] == "Positive", "review"]),
+                   "WordCloud - Positive Reviews", "wordcloud_positive.png")
+generate_wordcloud(" ".join(df.loc[df["sentiment"] == "Negative", "review"]),
+                   "WordCloud - Negative Reviews", "wordcloud_negative.png")
+
+df.to_csv("product_reviews_analyzed.csv", index=False)
+print(df["sentiment"].value_counts())`,
+        `sentiment
+Positive    12
+Negative     8
+Name: count, dtype: int64
+WordCloud images saved successfully.`,
+        "VADER separates the reviews into 12 positive and 8 negative examples. The positive cloud is dominated by words such as great, good and excellent, while the negative cloud highlights poor, bad and disappointing."
+      ],
+      [
+        "Text Statistics and Distributions",
+        "To measure the length and vocabulary of every review.",
+        "Regular expressions split text into tokens. Counting words, characters, numeric tokens and stopwords describes how reviews are written, and a histogram shows whether the values are concentrated or spread out.",
+        "Download the NLTK stopword list|Tokenise every review|Count words, characters, numbers and stopwords|Plot histograms for each statistic|Print the most frequent stopwords",
+        `import re
+import pandas as pd
+import nltk
+import matplotlib.pyplot as plt
+import seaborn as sns
+from nltk.corpus import stopwords
+from collections import Counter
+
+nltk.download("stopwords", quiet=True)
+
+df = pd.read_csv("product_reviews.csv")
+df["review"] = df["review"].fillna("").astype(str)
+stop_words = set(stopwords.words("english"))
+
+def analyze_review(text):
+    tokens = re.findall(r"\\b[\\w']+\\b", text.lower())
+    words = re.findall(r"\\b[A-Za-z]+\\b", text)
+    numeric_tokens = re.findall(r"\\b\\d+(?:\\.\\d+)?\\b", text)
+    stopword_tokens = [t for t in tokens if t in stop_words]
+    return pd.Series({
+        "word_count": len(tokens),
+        "character_count": len(text),
+        "numeric_count": len(numeric_tokens),
+        "stopword_count": len(stopword_tokens),
+        "average_word_length": (sum(len(w) for w in words) / len(words)) if words else 0
+    })
+
+df = pd.concat([df, df["review"].apply(analyze_review)], axis=1)
+df.to_csv("review_statistics.csv", index=False)
+
+for column in ["stopword_count", "numeric_count", "word_count",
+               "character_count", "average_word_length"]:
+    sns.histplot(data=df, x=column, kde=True, bins=20)
+    plt.title(column)
+    plt.show()
+
+all_tokens = re.findall(r"\\b[\\w']+\\b", " ".join(df["review"]).lower())
+stopword_frequency = Counter(t for t in all_tokens if t in stop_words)
+print("Top 10 stopwords:")
+print(stopword_frequency.most_common(10))`,
+        `Top 10 stopwords:
+[('and', 19), ('the', 16), ('is', 10), ('it', 7), ('was', 5), ('i', 5), ('very', 4), ('for', 4), ('after', 3), ('not', 3)]
+
+Descriptive statistics:
+       stopword_count  numeric_count  word_count  character_count  average_word_length
+count       20.000000      20.000000   20.000000         20.00000            20.000000
+mean         4.600000       0.300000   11.450000         67.10000             4.975126
+std          2.280351       0.470162    2.064104          8.44736             0.922489
+min          1.000000       0.000000    7.000000         52.00000             3.769231
+max          8.000000       1.000000   15.000000         85.00000             6.857143`,
+        "Reviews average about 11 words and 67 characters, and stopwords such as and, the and is account for a large share of the tokens. Removing stopwords before modelling would therefore focus any later analysis on meaningful terms."
+      ],
+      [
+        "Comparing NLTK VADER and Standalone VADER",
+        "To check whether two implementations of the same sentiment model agree.",
+        "NLTK bundles a VADER analyser, and the vaderSentiment package provides another. Both return pos, neg, neu and compound scores for a piece of text. Comparing their outputs side by side confirms consistency and teaches that library implementations can be validated against each other.",
+        "Load the review CSV|Create both analysers|Score every review with each analyser|Classify compound scores|Compare the two distributions|Save the combined results",
+        `import pandas as pd
+import nltk
+from nltk.sentiment.vader import SentimentIntensityAnalyzer as NLTKVADER
+from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer as StandaloneVADER
+
+nltk.download("vader_lexicon", quiet=True)
+
+df = pd.read_csv("product_reviews.csv")
+df["review"] = df["review"].fillna("").astype(str)
+nltk_analyzer = NLTKVADER()
+vader_analyzer = StandaloneVADER()
+
+def classify(score):
+    if score >= 0.05:
+        return "Positive"
+    if score <= -0.05:
+        return "Negative"
+    return "Neutral"
+
+nltk_scores = df["review"].apply(nltk_analyzer.polarity_scores)
+vader_scores = df["review"].apply(vader_analyzer.polarity_scores)
+
+df["nltk_compound"] = nltk_scores.apply(lambda x: x["compound"])
+df["vader_compound"] = vader_scores.apply(lambda x: x["compound"])
+df["nltk_sentiment"] = df["nltk_compound"].apply(classify)
+df["vader_sentiment"] = df["vader_compound"].apply(classify)
+
+print(df[["review", "nltk_compound", "nltk_sentiment",
+          "vader_compound", "vader_sentiment"]].head(10).to_string(index=False))
+print("\\nNLTK sentiment distribution:")
+print(df["nltk_sentiment"].value_counts())
+print("\\nStandalone VADER sentiment distribution:")
+print(df["vader_sentiment"].value_counts())
+
+df.to_csv("sentiment_analysis_results.csv", index=False)`,
+        `NLTK sentiment distribution:
+Positive    12
+Negative     8
+
+Standalone VADER sentiment distribution:
+Positive    12
+Negative     8
+
+Results saved to sentiment_analysis_results.csv`,
+        "Both implementations produced identical compound scores for every review, so the two libraries can be used interchangeably here. Identical distributions are strong evidence that the pipeline is correct."
+      ],
+      [
+        "Visualising Sentiment Intensity",
+        "To plot every review's compound score and see how far it sits from the neutral band.",
+        "A scatter plot with review index on the x-axis and compound score on the y-axis shows the strength as well as the direction of sentiment. Horizontal reference lines at +0.05 and -0.05 mark the positive and negative thresholds.",
+        "Load sentiment_analysis_results.csv|Convert compound scores to numbers|Number each review|Plot compound score coloured by sentiment|Draw the positive, negative and neutral reference lines|Save the chart",
+        `import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+df = pd.read_csv("sentiment_analysis_results.csv")
+df["vader_compound"] = pd.to_numeric(df["vader_compound"], errors="coerce")
+df = df.dropna(subset=["vader_compound"]).reset_index(drop=True)
+df["review_index"] = range(1, len(df) + 1)
+
+palette = {"Positive": "green", "Negative": "red", "Neutral": "gray"}
+
+plt.figure(figsize=(14, 7))
+sns.scatterplot(data=df, x="review_index", y="vader_compound",
+                hue="vader_sentiment", palette=palette, s=70, alpha=0.8)
+
+plt.axhline(y=0.05, color="green", linestyle="--", label="Positive threshold")
+plt.axhline(y=-0.05, color="red", linestyle="--", label="Negative threshold")
+plt.axhline(y=0, color="black", linestyle=":", label="Neutral reference")
+
+plt.ylim(-1.05, 1.05)
+plt.xlabel("Review Index")
+plt.ylabel("VADER Compound Sentiment Score")
+plt.title("Sentiment Intensity of Product Reviews")
+plt.legend(loc="best")
+plt.grid(alpha=0.25)
+plt.tight_layout()
+plt.savefig("sentiment_intensity_scatter.png", dpi=300)
+plt.show()`,
+        `Scatter intensity plot saved successfully.`,
+        "Most points sit close to +1 or -1, showing that the reviews use strongly polarised language. No review lands inside the neutral band, which matches the earlier counts of 12 positive and 8 negative."
+      ]
+    ]
+  },
+
+  /* ------------------------------------------------------------ 09 */
+  {
+    id: "09",
+    name: "Customer Segmentation using K-Means Clustering",
+    topic: "K-Means Clustering Customer Segmentation",
+    tools: ["Python 3", "Pandas", "Scikit-learn", "Matplotlib", "Seaborn", "Jupyter Notebook"],
+    description:
+      "Segment customers into groups using K-Means clustering, choosing the number of clusters with the elbow method and silhouette score.",
+    overview:
+      "Clustering is unsupervised learning: no labels are given, and the algorithm discovers structure in the data. K-Means repeatedly assigns points to the nearest centroid and moves each centroid to the mean of its members. This experiment applies that idea to customer income and spending data.",
+    aim:
+      "To group customers with similar income and spending behaviour using K-Means and to choose a sensible number of clusters.",
+    problem:
+      "A marketing team cannot design one campaign for thousands of customers. It needs a small number of meaningful segments, each described by typical income and spending levels, so that campaigns and offers can be targeted.",
+    dataset: {
+      name: "Marketing campaign customer data",
+      source: "Public marketing_campaign.csv dataset",
+      records: "2,240 customers, 29 columns",
+      features: "Income, MntWines, MntFruits, MntMeatProducts, MntFishProducts, MntSweetProducts, MntGoldProds",
+      types: "Numeric measurements"
+    },
+    methodology: [
+      "Load the marketing campaign dataset.",
+      "Select the income and product-spending columns.",
+      "Impute missing values and clip extreme values.",
+      "Standardise the features so no column dominates.",
+      "Compare K from 2 to 7 using inertia and silhouette score.",
+      "Train the final model, profile the segments and save the results."
+    ],
+    analysis:
+      "The elbow curve shows how within-cluster inertia falls as K grows, while the silhouette score measures how well separated the clusters are. The best-scoring K is then profiled by averaging each original feature per segment.",
+    results:
+      "The silhouette score is highest at K = 2 (0.481). The two segments differ sharply: one has a mean income near 41,244 and low spending, the other a mean income near 73,454 with spending several times higher.",
+    architecture: [
+      "Raw Customer Data",
+      "Feature Selection and Cleaning",
+      "Standardisation",
+      "Elbow and Silhouette Search",
+      "K-Means Model",
+      "Segment Profiles and Charts"
+    ],
+    files: [
+      { name: "Experiment 09 - Customer Segmentation Notebook (DS-9.ipynb)", type: "ipynb", url: "assets/files/imported/DS-9.ipynb", size: "108.4 KB", date: "2026-11-05" }
+    ],
+    subs: [
+      [
+        "Loading and Preparing Customer Data",
+        "To clean and standardise the customer features before clustering.",
+        "K-Means measures distance, so columns with large raw values would dominate. Missing income values are replaced with the column median, extreme values are clipped to the 1st and 99th percentiles, and StandardScaler puts every feature on the same scale.",
+        "Load marketing_campaign.csv|Select the income and spending columns|Fill missing values with the median|Clip the 1st and 99th percentiles|Standardise the feature matrix",
+        `import pandas as pd
+from sklearn.preprocessing import StandardScaler
+
+url = "https://raw.githubusercontent.com/johng034/customer-segmentation/master/marketing_campaign.csv"
+df = pd.read_csv(url, sep=",")
+
+features = [
+    "Income", "MntWines", "MntFruits", "MntMeatProducts",
+    "MntFishProducts", "MntSweetProducts", "MntGoldProds"
+]
+
+data = df[features].copy()
+data = data.fillna(data.median())
+data = data.clip(lower=data.quantile(0.01),
+                 upper=data.quantile(0.99), axis=1)
+
+X = StandardScaler().fit_transform(data)
+
+print("Dataset shape:", df.shape)
+print("Prepared feature matrix:", X.shape)`,
+        `Dataset shape: (2240, 29)
+Prepared feature matrix: (2240, 7)`,
+        "The cleaned matrix has 2,240 rows and 7 standardised features. Standardisation is essential: without it, income (tens of thousands) would overwhelm spending columns measured in hundreds."
+      ],
+      [
+        "Choosing K with the Elbow Method and Silhouette Score",
+        "To evaluate several cluster counts and select the best one.",
+        "Inertia is the sum of squared distances from each point to its cluster centre, so it always falls as K rises. The elbow method looks for the point where further clusters stop helping. The silhouette score measures separation and reaches its maximum at the most distinct grouping.",
+        "Loop K from 2 to 7|Fit K-Means for each K|Record inertia and silhouette score|Plot the elbow curve|Select the K with the highest silhouette score",
+        `import matplotlib.pyplot as plt
+from sklearn.cluster import KMeans
+from sklearn.metrics import silhouette_score
+
+inertias = []
+scores = []
+
+for k in range(2, 8):
+    model = KMeans(n_clusters=k, random_state=42, n_init=10)
+    labels = model.fit_predict(X)
+    inertias.append(model.inertia_)
+    scores.append(silhouette_score(X, labels))
+
+plt.plot(range(2, 8), inertias, marker="o")
+plt.xlabel("Number of Clusters (K)")
+plt.ylabel("Inertia")
+plt.title("Elbow Method")
+plt.show()
+
+print("Silhouette scores:", dict(zip(range(2, 8), scores)))
+
+best_k = list(range(2, 8))[scores.index(max(scores))]
+print("Best number of clusters:", best_k)`,
+        `Silhouette scores: {2: 0.4811241347524294, 3: 0.3970290774895379, 4: 0.36830543242775043, 5: 0.34062159504770945, 6: 0.34227709867700146, 7: 0.26872868005477607}
+Best number of clusters: 2`,
+        "Two clusters give the highest silhouette score (0.481) and a clear elbow. Adding more clusters lowers the score, so the data supports a simple high-value versus lower-value split."
+      ],
+      [
+        "Training K-Means and Profiling Segments",
+        "To fit the final model and describe each segment using the original features.",
+        "Once K is chosen, K-Means assigns every customer to the nearest centroid. Grouping the original (unscaled) data by segment and averaging each column produces an interpretable profile for marketing.",
+        "Train K-Means with the best K|Assign a segment label to every customer|Group by segment|Average each feature|Display the profile table",
+        `import pandas as pd
+from sklearn.cluster import KMeans
+
+best_k = 2
+kmeans = KMeans(n_clusters=best_k, random_state=42, n_init=10)
+df["Customer_Segment"] = kmeans.fit_predict(X)
+
+summary = df.groupby("Customer_Segment")[features].mean().round(2)
+
+print("Best number of clusters:", best_k)
+print("\\nCustomer Segment Summary:")
+print(summary)`,
+        `Best number of clusters: 2
+
+Customer Segment Summary:
+                    Income  MntWines  MntFruits  MntMeatProducts  MntFishProducts  MntSweetProducts  MntGoldProds
+Customer_Segment
+0                 41244.22    145.50       7.42            48.00            10.51              7.35         25.19
+1                 73453.89    610.02      62.77           396.75            89.71             65.16         80.40`,
+        "Segment 1 earns about 78% more and spends roughly four to eight times more on every product category. Segment 0 is a price-sensitive group, while segment 1 is the high-value group worth premium campaigns."
+      ],
+      [
+        "Visualising and Saving the Segments",
+        "To inspect the clusters visually and export the labelled data.",
+        "A scatter plot of income against wine spending, coloured by segment, shows how cleanly the two groups separate. Saving the labelled table and the profile summary makes the result reusable in reporting.",
+        "Plot Income against MntWines coloured by segment|Add a title|Save the figure|Write customer_segments.csv|Write segment_summary.csv",
+        `import matplotlib.pyplot as plt
+import seaborn as sns
+
+sns.scatterplot(data=df, x="Income", y="MntWines",
+                hue="Customer_Segment", palette="Set2")
+plt.title("Customer Segments by Income and Wine Spending")
+plt.show()
+
+df.to_csv("customer_segments.csv", index=False)
+summary.to_csv("segment_summary.csv")
+print("Files saved: customer_segments.csv and segment_summary.csv")`,
+        `Analysis completed successfully!
+Files saved: customer_segments.csv and segment_summary.csv`,
+        "The plot shows two well-separated bands: low income with low wine spending and high income with high wine spending. Saving both the labelled data and the summary keeps the analysis reproducible."
+      ]
+    ]
+  },
+
+  /* ------------------------------------------------------------ 10 */
+  {
+    id: "10",
+    name: "Emotion Detection using Machine Learning",
+    topic: "NLP Text Classification Emotion Detection",
+    tools: ["Python 3", "Pandas", "Scikit-learn", "Jupyter Notebook"],
+    description:
+      "Build a text-classification pipeline that predicts the emotion behind a sentence and maps each prediction to an emoji.",
+    overview:
+      "Text classification turns sentences into features and learns which features belong to which category. This experiment uses TF-IDF to weight words and word pairs, then trains logistic regression to recognise six emotions: happy, sadness, anger, fear, love and surprise.",
+    aim:
+      "To train and evaluate a TF-IDF + logistic regression model that detects emotion in short text.",
+    problem:
+      "Messages, reviews and comments carry emotion that is not written as a number. A program that can label the emotion automatically supports chatbots, moderation and feedback analysis.",
+    dataset: {
+      name: "Labelled emotion sentences",
+      source: "18 short sentences created in Python",
+      records: "18 sentences, 3 per emotion",
+      features: "text, emotion",
+      types: "Text and category label"
+    },
+    methodology: [
+      "Create a small balanced dataset of labelled sentences.",
+      "Split it into training and test sets, keeping every emotion represented.",
+      "Convert text to TF-IDF features using single words and word pairs.",
+      "Train a logistic regression classifier.",
+      "Measure accuracy and inspect the classification report.",
+      "Predict new sentences and display the matching emoji."
+    ],
+    analysis:
+      "Accuracy alone is not enough on a tiny dataset, so the per-class precision, recall and F1 scores are examined. The predictions on unseen sentences show where the model generalises and where it confuses similar emotions.",
+    results:
+      "The model reaches 33.33% test accuracy with only two sentences per emotion available for training. Predictions are reasonable for clear examples such as loneliness, but similar sentences are sometimes confused.",
+    architecture: [
+      "Labelled Sentences",
+      "Train/Test Split",
+      "TF-IDF Vectoriser",
+      "Logistic Regression",
+      "Emotion Prediction",
+      "Emoji Output"
+    ],
+    files: [
+      { name: "Experiment 10 - Emotion Detection Notebook (DS_Exp_10.ipynb)", type: "ipynb", url: "assets/files/imported/DS_Exp_10.ipynb", size: "4.9 KB", date: "2026-11-05" }
+    ],
+    subs: [
+      [
+        "Building the Emotion Dataset",
+        "To create a balanced labelled text dataset and split it for training and testing.",
+        "The dataset contains three sentences for each of six emotions. stratify keeps the same class balance in the test set, which matters because with so few examples an unlucky split could omit an emotion entirely.",
+        "Create the text and emotion lists|Build a DataFrame|Split into train and test with stratification|Print the class counts and split sizes",
+        `import pandas as pd
+from sklearn.model_selection import train_test_split
+
+data = {
+    "text": [
+        "I am very happy today",
+        "This is a wonderful day",
+        "I feel cheerful and excited",
+        "I am sad and lonely",
+        "I feel very disappointed",
+        "I miss my family so much",
+        "I am angry with you",
+        "This makes me furious",
+        "I hate this situation",
+        "I am scared of the dark",
+        "I am afraid of losing",
+        "I feel nervous and frightened",
+        "I love you so much",
+        "You mean everything to me",
+        "I adore spending time with you",
+        "Wow this is unbelievable",
+        "I did not expect this surprise",
+        "What an amazing unexpected gift"
+    ],
+    "emotion": [
+        "happy", "happy", "happy",
+        "sadness", "sadness", "sadness",
+        "anger", "anger", "anger",
+        "fear", "fear", "fear",
+        "love", "love", "love",
+        "surprise", "surprise", "surprise"
+    ]
+}
+
+df = pd.DataFrame(data)
+X_train, X_test, y_train, y_test = train_test_split(
+    df["text"], df["emotion"], test_size=0.33,
+    random_state=42, stratify=df["emotion"]
+)
+
+print(df["emotion"].value_counts())
+print("Training rows:", len(X_train), "| Test rows:", len(X_test))`,
+        `emotion
+happy       3
+sadness     3
+anger       3
+fear        3
+love        3
+surprise    3
+Name: count, dtype: int64
+Training rows: 12 | Test rows: 6`,
+        "The dataset is perfectly balanced at three sentences per emotion. The stratified split keeps two examples of every emotion in the test set, so the evaluation covers all six classes."
+      ],
+      [
+        "Training a TF-IDF + Logistic Regression Pipeline",
+        "To convert text into weighted features and train a classifier.",
+        "TfidfVectorizer turns each sentence into a vector of word and bigram weights, giving rare but informative words more influence than common ones. Logistic regression then learns a decision boundary for each emotion. Keeping both steps in a Pipeline ensures the same transformation is applied at prediction time.",
+        "Import the pipeline components|Create TF-IDF and logistic regression steps|Fit the pipeline on the training text|Predict the test set|Print accuracy and the classification report",
+        `from sklearn.pipeline import Pipeline
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score, classification_report
+
+model = Pipeline([
+    ("tfidf", TfidfVectorizer(ngram_range=(1, 2))),
+    ("classifier", LogisticRegression(max_iter=1000))
+])
+
+model.fit(X_train, y_train)
+predictions = model.predict(X_test)
+
+print("Test Accuracy:", round(accuracy_score(y_test, predictions) * 100, 2), "%")
+print("\\nClassification Report:")
+print(classification_report(y_test, predictions, zero_division=0))`,
+        `Test Accuracy: 33.33 %
+
+Classification Report:
+              precision    recall  f1-score   support
+
+       anger       0.00      0.00      0.00         1
+        fear       0.33      1.00      0.50         1
+       happy       0.00      0.00      0.00         1
+        love       1.00      1.00      1.00         1
+     sadness       0.00      0.00      0.00         1
+    surprise       0.00      0.00      0.00         1
+
+    accuracy                           0.33         6
+   macro avg       0.22      0.33      0.25         6
+weighted avg       0.22      0.33      0.25         6`,
+        "Only two of six test sentences are correct. With just two training examples per emotion the model cannot learn reliable boundaries, which is exactly why the classification report is more informative than a single accuracy figure."
+      ],
+      [
+        "Predicting Emotions and Mapping Emoji",
+        "To apply the trained model to new sentences and present the result visually.",
+        "A prediction function wraps model.predict() and looks the result up in an emoji dictionary. Packaging the lookup separately keeps the model code clean and makes it easy to change how results are displayed.",
+        "Define the emotion-to-emoji mapping|Write a detect_emotion function|Predict a happy sentence|Predict a lonely sentence|Predict a love sentence",
+        `emoji_map = {
+    "happy": "😊",
+    "sadness": "😢",
+    "anger": "😠",
+    "fear": "😨",
+    "love": "❤️",
+    "surprise": "😲"
+}
+
+def detect_emotion(text):
+    emotion = model.predict([text])[0]
+    emoji = emoji_map[emotion]
+    print("Input Text:", text)
+    print("Detected Emotion:", emotion)
+    print("Relevant Emoji:", emoji)
+    print()
+
+detect_emotion("I am happy to see you")
+detect_emotion("I feel lonely today")
+detect_emotion("I love my family")`,
+        `Input Text: I am happy to see you
+Detected Emotion: love
+Relevant Emoji: ❤️
+
+Input Text: I feel lonely today
+Detected Emotion: sadness
+Relevant Emoji: 😢
+
+Input Text: I love my family
+Detected Emotion: fear
+Relevant Emoji: 😨`,
+        "The lonely sentence is classified correctly, but the happy and love sentences are confused with other classes. The emoji mapping works as intended; the limiting factor is the tiny training set, so more labelled examples would be the first improvement."
+      ]
+    ]
   }
+
 ];
 
 /* ---- The array used by the whole website ---- */
